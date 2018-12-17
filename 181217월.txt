@@ -1,0 +1,12 @@
+s3.py.hphk.io
+
+https://earthquake.kr:23490
+
+
+&&는 앞에거 false면 뒤에거 안봄. &는 뒤에 거도 같이 보고 체크한다.
+
+requests.get(url)
+requests라는 기능을 불러와서 그 중에서 get 메소드를 사용
+
+choice = random.choice(menu)
+print(choice)
