@@ -12,6 +12,20 @@ def palindrome(word):
 
 
 
+### 강사님 답안
+
+```python
+def is_palindrome(word):
+    list_word = list(word)
+    for i in range(len(list_word) // 2):
+        if list_word[i] != list_word[-i-1]:
+            return False
+    return True
+
+print(is_palindrome('level'))
+print(is_palindrome('apple'))
+```
+
 
 
 
@@ -53,7 +67,7 @@ printlist([1, 2, 3])
 딕셔너리는 key, value로 구성되어 있습니다. 따라서, 딕셔너리 my_dict 각각의 상황에 따라 반복문을 수행할 수 있도록 빈칸을 채우시오.
 
 ```python
-key: for key in my_dict.keys():
+key: for key in my_dict:
 value: for value in my_dict.values():
 key, value: for key, value in my_dict.items():
 ```
