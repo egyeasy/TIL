@@ -122,3 +122,28 @@ http://woowabros.github.io/experience/2017/10/30/baemin-mobile-git-branch-strate
 
 
 
+### Github, Gitlab에 동시에 푸시하기(여러 remote에 푸시)
+
+github 원격저장소에 Origin이라는 이름을 붙여서 사용해왔다.
+
+마찬가지로 gitlab 원격저장소에 새로운 이름을 붙여서 사용할 수 있음. (SECOND 등)
+
+
+
+1) private으로 gitlab에서 new project 생성
+
+2) Existing Git repository
+
+```
+cd existing_repo
+git remote add origin https://lab.ssafy.com/asphalt/gitlab_practice.git
+git push -u origin --all
+git push -u origin --tags
+```
+
+3) lab에 올릴 폴더에서 랩 clone https 주소 복붙
+`git remote add lab https://lab.ssafy.com/asphalt/gitlab_practice.git` 
+
+4) `git remote -v` 해보면 새로운 remote 저장소 생긴 것을 볼 수 있다.
+
+5) `git push lab master` 로 lab에 push 가능
