@@ -1,6 +1,6 @@
 ### 1번
 
-numbers.Number, numbers.Complex, numbers.Real, numbers.Rational, numbers.Integral
+int, str, dictinary, list, set 등 대부분의 자료형
 
 
 
@@ -20,5 +20,11 @@ class Person:
     
     def greeting(self):
         return f'안녕하세요. {self.name}입니다. {self.age}살입니다.'
+    
+p1 = Person('홍길동', 20)
+p1.greeting()
+
+p2 = Person('둘리')
+p2.greeting()
 ```
 
