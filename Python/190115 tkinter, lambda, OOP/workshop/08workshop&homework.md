@@ -44,7 +44,7 @@ def hello(word):
 
 (a) `from flask import Flask`
 
-flask라는 모듈에서 Flask 클래스와 명령어 모음을 불러온다. flask.Flask라고 입력하지 않고 Flask라고 입력함으로써 클래스와 명령어 사용이 가능하다.
+flask라는 모듈에서 Flask 클래스와 명령어 모음을 불러온다. flask.Flask라고 입력하지 않고 Flask라고 입력함으로써 Flask 클래스 내의 속성과 메소드에 대한 접근이 가능해진다.
 
 ### 4번
 
