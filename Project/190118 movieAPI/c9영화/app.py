@@ -5,24 +5,46 @@ from datetime import date, timedelta
 token = os.getenv('KOBIS_TOKEN')
 token_string = "key=" + token
 
-naver_id = os.getenv('NAVER_SEARTCH_ID')
+naver_id = os.getenv('NAVER_SEARCH_ID')
 naver_pw = os.getenv('NAVER_SEARCH_PW')
+print(naver_id, naver_pw)
 
 former_acc = {}
 
+# 영진위 주간 박스오피스 파일 헤더 작성
+with open('boxoffice.csv', 'w') as f:
+    field = ('movie_code', 'title', 'audience', 'recorded_at')
+    writer = csv.DictWriter(f, fieldnames=field)
+    writer.writeheader()
+
 # 영진위 상세 파일 헤더 작성
-mode = 'w'
-with open('movie.csv', mode) as f:
+with open('movie.csv', 'w') as f:
     field = ('movie_code', 'movie_name_ko','movie_name_en',
     'movie_name_og', 'open_year', 'show_time', 'genres',
      'directors', 'watch_grade_nm', 'actor1', 'actor2', 'actor3')
     writer = csv.DictWriter(f, fieldnames=field)
     writer.writeheader()
 
+# 네이버 영화 검색 API 파일 헤더 작성
+with open('movie_naver.csv', 'w') as f:
+    field = ('movie_code', 'thumb_url', 'link_url', 'user_rating')
+    writer = csv.DictWriter(f, fieldnames=field)
+    writer.writeheader()
 
+url_nav = "https://openapi.naver.com/v1/search/movie.json"
+movieCd = "20184105"
+query_nav = "query="+movieCd
+params = {
+    'X-Naver-Client-Id': naver_id,
+    'X-Naver-Client-Secret': naver_pw,
+    'query': movieCd
+}
+res_nav = requests.get(url_nav, params=params)
+doc_nav = res_nav.json()
+print(doc_nav)
 
 origin_date = date(2019, 1, 13)
-for i in range(10):
+for i in range(0):
     url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?"
     the_date = origin_date - timedelta(weeks=i)
     dt = ''.join(str(the_date).split('-'))
@@ -57,6 +79,7 @@ for i in range(10):
         # 영진위 영화상세정보
         url2 = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?"
         movieCd = "&movieCd=" + dic['movieCd']
+        print(movieCd)
         response2 = requests.get(url2 + token_string + movieCd)
         doc2 = response2.json()['movieInfoResult']['movieInfo']
         
@@ -91,22 +114,6 @@ for i in range(10):
              'directors', 'watch_grade_nm', 'actor1', 'actor2', 'actor3')
             writer = csv.DictWriter(f, fieldnames=field)
             writer.writerow(detail_dic)            
-        
-        if i == 0:
-            mode = 'w'
-            with open('boxoffice.csv', mode) as f:
-                field = ('movie_code', 'title', 'audience', 'recorded_at')
-                writer = csv.DictWriter(f, fieldnames=field)
-                writer.writeheader()
-                for movie in new_list:
-                    writer.writerow(movie)
-        else:
-            mode = 'a'
-            with open('boxoffice.csv', mode) as f:
-                field = ('movie_code', 'title', 'audience', 'recorded_at')
-                writer = csv.DictWriter(f, fieldnames=field)
-                for movie in new_list:
-                    writer.writerow(movie)
 
         
         for key in dic:
@@ -120,21 +127,13 @@ for i in range(10):
         new_list.append(new_dic)
     
     
-    if i == 0:
-        mode = 'w'
-        with open('boxoffice.csv', mode) as f:
-            field = ('movie_code', 'title', 'audience', 'recorded_at')
-            writer = csv.DictWriter(f, fieldnames=field)
-            writer.writeheader()
-            for movie in new_list:
-                writer.writerow(movie)
-    else:
-        mode = 'a'
-        with open('boxoffice.csv', mode) as f:
-            field = ('movie_code', 'title', 'audience', 'recorded_at')
-            writer = csv.DictWriter(f, fieldnames=field)
-            for movie in new_list:
-                writer.writerow(movie)
+
+    mode = 'a'
+    with open('boxoffice.csv', mode) as f:
+        field = ('movie_code', 'title', 'audience', 'recorded_at')
+        writer = csv.DictWriter(f, fieldnames=field)
+        for movie in new_list:
+            writer.writerow(movie)
 
         
 
