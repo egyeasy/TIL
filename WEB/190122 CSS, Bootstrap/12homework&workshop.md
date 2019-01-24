@@ -1,3 +1,18 @@
+# homework
+
+1. 디스플레이의 종류
+2. `<meta name='viewport' content='width=device-width' />`
+3. Extra small : < 576px
+   Small : >= 576px
+   Medium : >= 768px
+   Large : >= 992px
+   Extra large : >= 1200px
+
+
+
+# workshop
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,44 +28,23 @@
 
 </head>
 <body>
-    <!-- container 생성 -->
     <div class="container">
-    <!-- 좌우로 꽉찬 컨테이너 -->
-    <!-- <div class="container-fluid"> -->
-        <!-- row 생성 -->
         <div class="row">
             <div class="bg-danger rounded-pill d-inline col-sm-12 col-md-6 col-xl-3">
                 1
             </div>
-            <div class="bg-danger rounded-circle rounded-pill d-inline col-sm-12 col-md-6 col-xl-3">
+            <div class="bg-danger rounded-pill d-inline col-sm-12 col-md-6 col-xl-3">
                 2
             </div>
-            <div class="bg-danger rounded-circle rounded-pill d-inline col-sm-12 col-md-6 col-xl-3">
+            <div class="bg-danger rounded-pill d-inline col-sm-12 col-md-6 col-xl-3">
                 3
             </div>
-            <div class="bg-danger rounded-circle rounded-pill d-inline col-sm-12 col-md-6 col-xl-3">
+            <div class="bg-danger rounded-pill d-inline col-sm-12 col-md-6 col-xl-3">
                 4
-            </div>
-            <!-- 칼럼을 2개씩 차지해라 -->
-            <div class="bg-danger col-sm-2 px-1">
-                글 1
-            </div>
-            <div class="bg-warning col-sm-2 px-1">
-                글 2
-            </div>
-            <div class="bg-success col-sm-2 px-1">
-                글 3
-            </div>
-            <div class="bg-info col-sm-2 px-1">
-                글 4
-            </div>
-            <div class="bg-primary col-sm-2 px-1">
-                글 5
-            </div>
-            <div class="bg-dark col-sm-2 px-1">
-                글 6
             </div>
         </div>
     </div>
 </body>
 </html>
+```
+
