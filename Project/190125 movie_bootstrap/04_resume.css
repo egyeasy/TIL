@@ -1,0 +1,22 @@
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    padding-top: 56px;
+    height: 10000px;
+}
+
+.jumbo-profile {
+    
+}
+
+
+/* Education */
+.subtitle {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.hr-subtitle {
+    width: 70px;
+    border-color: #222222;
+}

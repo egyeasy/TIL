@@ -18,9 +18,26 @@
         .row {
             background-color: moccasin;
         }
+        .box {
+            display: flex;
+            align-items: baseline;
+            flex-direction: column;
+            justify-content: space-evenly;
+            flex-wrap: nowrap;
+        }
     </style>
 </head>
 <body>
+    <div class="box">
+        <div style="order: -1">One</div>
+        <div style="order: 1">Two</div>
+        <div>Three
+            <br>has
+            <br>extra
+            <br>text
+        </div>
+        <div style="order: -2">four</div>
+    </div>
     <!-- block, lg-none : 화면이 중간쯤 작아지면 생겨남 -->
     <button class="btn btn-info d-block d-lg-none">
         버튼1
