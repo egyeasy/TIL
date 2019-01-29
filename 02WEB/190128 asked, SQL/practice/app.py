@@ -1,13 +1,13 @@
 from flask import Flask, render_template, send_file, request
 import csv
 from datetime import datetime
-    
+
 app = Flask(__name__) # 생성함수 초기값으로 __name__ : execution contenxt
 
 @app.route("/")
 def index():
     return render_template('index.html')
-    
+
 @app.route("/ask")
 def ask():
     question = request.args.get('question')
@@ -23,8 +23,8 @@ def ask():
         # writer.writerow([question, datetime.today().strftime("%Y/%m/%d %H:%M:%S")]) # writerow 안에는 무조건 리스트가 들어가야 한다.
         # writer.writerow([question, '{}년 {}월 {}일 {}시 {}분'.format(dt.year, dt.month, dt.day, dt.hour, dt.minute)])
         writer.writerow([new_idx, question, datetime.today().strftime("%Y년 %m월 %d일 %H시 %M분 %S초")])
-    return render_template('ask.html', question=question)  
-    
+    return render_template('ask.html', question=question)
+
 
 @app.route("/quest")
 def quest():
