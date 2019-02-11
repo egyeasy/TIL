@@ -11,4 +11,12 @@
 
 
 - iphone 출시
-- 
+
+
+
+### Khan Academy Caeser cypher
+
+
+
+udacity introduction to machine learning
+
