@@ -20,3 +20,12 @@
 
 udacity introduction to machine learning
 
+
+
+
+
+### 스포카 기술 블로그
+
+https://spoqa.github.io/
+
+=> 회사 개발팀 내의 파이썬 코딩 컨벤션
