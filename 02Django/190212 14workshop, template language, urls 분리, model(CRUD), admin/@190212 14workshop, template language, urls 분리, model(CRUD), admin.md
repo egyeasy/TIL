@@ -32,9 +32,10 @@ py_lint를 좀 빡세게 쓰면 4 space나 style(변수 이름 등)도 강제하
 
 
 
-### isval.html - django template language 조건문
+### isval.html - django template language
 
 ```html
+<!-- 조건문 -->
 {% if month == 2 and day == 14 %}
     <h1>예</h1>
 {% else %}
@@ -188,7 +189,6 @@ def catch(request):
 
 ```html
 {% extends 'base.html' %}
-
 
 {% block body %}
 <pre>{{ mseg }}</pre> <!-- preformatted tag. 입력한 문장 형태 그대로 브라우저에 표현 -->
@@ -506,3 +506,4 @@ admin.site.register(Article, ArticleAdmin) #ArticleAdmin도 등록
 서버 껐다 켠다.
 
 DB 들어가면 title과 content를 바로 볼 수 있게 됨.
+
