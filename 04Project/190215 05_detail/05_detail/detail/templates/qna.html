@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1 class="text-center">Q & A</h1>
+<form>
+    <div class="container">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">제목</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">이메일</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group col-md-12">
+            <label for="exampleFormControlTextarea1">내용</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

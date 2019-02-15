@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="position-fixed">
+            <div class="col-4 card-group">
+              <div class="card">
+                <img src="{% static 'img/bono.jpg' %}" class="card-img-top rounded-circle" alt="bonobono">
+                <div class="card-body">
+                  <h5 class="card-title">임동영</h5>
+                  <p class="card-text text-muted">dz1120@ssafy.com</p>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <a href="#" class="card-link">Logout</a>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="card col-7 ml-auto" style="width: 18rem;">
+          <img src="{% static 'img/stay.jpg' %}" class="card-img-top" alt="interstellar stay scene">
+          <div class="card-body">
+            <h5 class="card-title">작성글</h5>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="card col-7 ml-auto" style="width: 18rem;">
+          <img src="{% static 'img/stay.jpg' %}" class="card-img-top" alt="interstellar stay scene">
+          <div class="card-body">
+            <h5 class="card-title">작성글</h5>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="card col-7 ml-auto" style="width: 18rem;">
+          <img src="{% static 'img/stay.jpg' %}" class="card-img-top" alt="interstellar stay scene">
+          <div class="card-body">
+            <h5 class="card-title">작성글</h5>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
