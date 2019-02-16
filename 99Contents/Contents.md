@@ -29,3 +29,15 @@ udacity introduction to machine learning
 https://spoqa.github.io/
 
 => 회사 개발팀 내의 파이썬 코딩 컨벤션
+
+
+
+
+
+
+
+# 내가 정리
+
+### 왓챠 대표 인터뷰
+
+http://tenasia.hankyung.com/archives/180827
