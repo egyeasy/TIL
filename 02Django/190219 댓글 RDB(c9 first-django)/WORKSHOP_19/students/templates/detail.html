@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ student.id }}번</h1>
+    <h1>{{ student.name }}</h1>
+    <h1>{{ student.email }}</h1>
+    <h1>{{ student.birthday|date:"Y-m-d" }}</h1>
+    <h1>{{ student.age }}</h1>
+    <h1><a href="{% url 'students:edit' student.id %}">편집</a></h1>
+    <h1><a href="{% url 'students:delete' student.id %}">삭제</a></h1>
+</body>
+</html>
