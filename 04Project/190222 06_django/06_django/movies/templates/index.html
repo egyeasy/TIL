@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">제목</th>
+      <th scope="col">평점</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for movie in movies %}
+    <tr>
+      <th scope="row"><a href="{% url 'movies:detail' movie.id %}">{{ movie.title }}</a></th>
+      <td>{{ movie.score }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

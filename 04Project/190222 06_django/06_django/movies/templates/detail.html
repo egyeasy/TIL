@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h3>{{ movie.title }}</h3>
+    <h3>{{ movie.audience }}</h3>
+    <h3>{{ movie.genre }}</h3>
+    <h3>{{ movie.score }}</h3>
+    <h3>{{ movie.poster_url }}</h3>
+    <h3>{{ movie.description }}</h3>
+    
+    <a href="{% url 'movies:index' %}">목록</a>
+    <a href="{% url 'movies:edit' movie.id %}">수정</a>
+    <a href="{% url 'movies:delete' movie.id %}">삭제</a>
+
+{% endblock %}
