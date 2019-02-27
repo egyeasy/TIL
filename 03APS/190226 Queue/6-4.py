@@ -1,3 +1,5 @@
+# pf 코드 참조 - visited에 거리를 넣으면 다른 변수 만들어서 중복 체크할 필요도 없음!
+
 import sys
 sys.stdin = open('6-4.txt', 'r')
 
