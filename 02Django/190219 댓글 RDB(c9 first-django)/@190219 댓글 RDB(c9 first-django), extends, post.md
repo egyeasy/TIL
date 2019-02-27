@@ -169,7 +169,7 @@ class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE) # foreign으로 연결된 글이 지워진 시점에 댓글들도 다 지움
     
     def __repr__(self):
-        return f"<self.content>"
+        return f"<{self.content}>"
 ```
 
 

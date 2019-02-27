@@ -1,9 +1,7 @@
-# tail만든 버전
 import sys
 sys.stdin = open('7-2.txt', 'r')
 
 globalhead = None
-globaltail = None
 
 class Node:
     def __init__(self, item, link=None):
@@ -13,18 +11,15 @@ class Node:
 class Linked:
     def __init__(self):
         self.head = None
-        self.tail = None
 
     def push(self, item):
         if not self.head:
             self.head = Node(item)
-            self.tail = Node(item)
         else:
             p = self.head
             while p.link != None:
                 p = p.link
             p.link = Node(item)
-            self.tail = p.link
 
     def traverse(self):
         p = self.head
@@ -34,16 +29,16 @@ class Linked:
             print(p.data)
 
 def merge(a, b):
-    global globalhead, globaltail
+    global globalhead
     value = b.head.data
     p = globalhead
     # b의 기준값이 head보다 작을 경우
-    if value < p.data:
-        # q = b.head
-        # while q.link:
-        #     q = q.link
+    if value <= p.data: ###################
+        q = b.head
+        while q.link:
+            q = q.link
         # print(f"q.data: {q}, p: {p}")
-        b.tail.link = p
+        q.link = p
         globalhead = b.head
     else:
         while p.link:
@@ -57,10 +52,9 @@ def merge(a, b):
                 q = q.link
             q.link = p.link
             p.link = b.head
-        # b의 기준값이 a의 모든 값보다 클 경우
+        # b의 기준값이 a의 모든 값보다 작을 경우
         else:
             p.link = b.head
-            globaltail = b.tail
 
 def total_traverse():
     p = globalhead
@@ -86,25 +80,19 @@ for tc in range(1, T + 1):
     head = None
     n, m = map(int, input().split())
     lists = [0] * m
-    # maxes = [0] * m
     for i in range(m):
         alist = list(map(int, input().split()))
         a = Linked()
         for j in alist:
-            # if j > maxes[i]:
-            #     maxes[i] = j
             a.push(j)
         # a.traverse()
         # print()
         lists[i] = a
 
     globalhead = lists[0].head
-    globaltail = lists[0].tail
 
     for i in range(1, m):
         merge(lists[0], lists[i])
-        # if maxes[i] > maxes[0]:
-        #     maxes[0] = maxes[i]
         # lists[0].traverse()
         # print(f"global head: {globalhead.data}")
         # print()
