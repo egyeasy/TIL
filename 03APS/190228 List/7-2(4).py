@@ -1,4 +1,4 @@
-# tail만든 버전
+# tail, maxes만든 버전
 import sys
 sys.stdin = open('7-2.txt', 'r')
 
@@ -46,21 +46,22 @@ def merge(a, b):
         b.tail.link = p
         globalhead = b.head
     else:
-        while p.link:
-            if value < p.link.data:
-                break
-            p = p.link
-        # b의 기준값이 p.link.data보다 작을 경우
-        if p.link:
-            q = b.head
-            while q.link:
-                q = q.link
-            q.link = p.link
-            p.link = b.head
         # b의 기준값이 a의 모든 값보다 클 경우
-        else:
-            p.link = b.head
+        if value >= maxes[0]:
+            globaltail.link = b.head
             globaltail = b.tail
+        else:
+            # b의 기준값이 p.link.data보다 작을 경우
+            while p.link:
+                if value < p.link.data:
+                    break
+                p = p.link
+            if p.link:
+                q = b.head
+                while q.link:
+                    q = q.link
+                q.link = p.link
+                p.link = b.head
 
 def total_traverse():
     p = globalhead
@@ -86,13 +87,13 @@ for tc in range(1, T + 1):
     head = None
     n, m = map(int, input().split())
     lists = [0] * m
-    # maxes = [0] * m
+    maxes = [0] * m
     for i in range(m):
         alist = list(map(int, input().split()))
         a = Linked()
         for j in alist:
-            # if j > maxes[i]:
-            #     maxes[i] = j
+            if j > maxes[i]:
+                maxes[i] = j
             a.push(j)
         # a.traverse()
         # print()
@@ -100,11 +101,12 @@ for tc in range(1, T + 1):
 
     globalhead = lists[0].head
     globaltail = lists[0].tail
-
+    # print(maxes)
     for i in range(1, m):
         merge(lists[0], lists[i])
-        # if maxes[i] > maxes[0]:
-        #     maxes[0] = maxes[i]
+        if maxes[i] > maxes[0]:
+            maxes[0] = maxes[i]
+        # print(maxes)
         # lists[0].traverse()
         # print(f"global head: {globalhead.data}")
         # print()
