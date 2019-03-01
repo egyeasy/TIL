@@ -1,6 +1,8 @@
 import sys
 sys.stdin = open('7-2.txt', 'r')
 
+globalhead = None
+
 class Node:
     def __init__(self, item, link=None):
         self.data = item
