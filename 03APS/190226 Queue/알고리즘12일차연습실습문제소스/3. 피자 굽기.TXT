@@ -1,0 +1,55 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+
+# 원형큐
+def solve1():
+    rq = [0] * (N + 1)
+    f = r = 0
+
+    for pid in range(1, N + 1):
+        rq[pid] = [pid, pizzas[pid - 1]]
+
+    r = N
+    nextp = N
+
+    while f != r:
+        f = (f + 1) % (N + 1)
+        pid, pcheez = rq[f]
+        if pcheez // 2 != 0:
+            pcheez //= 2
+            r = (r + 1) % (N + 1)
+            rq[r] = [pid, pcheez]
+        elif nextp < M:
+            r = (r + 1) % (N + 1)
+            rq[r] = [nextp, pizzas[nextp]]
+            nextp += 1
+
+    return pid + 1
+
+
+# 선형 큐
+def solve():
+    q = [0] * 1000
+    f = r = -1
+
+    for i in range(N): q[i] = i
+    r += N
+    nextp = N
+
+    while f != r:
+        f += 1; pid = q[f]
+        if pizzas[pid] // 2 != 0:
+            pizzas[pid] //= 2
+            r += 1; q[r] = pid
+        elif nextp < M:
+            r += 1;  q[r] = nextp
+            nextp += 1
+
+    return pid + 1
+
+
+T = int(input())
+for tc in range(1, T + 1):
+    N, M = map(int, input().split())    # 화덕의 크기 N, 피자 개수 M
+    pizzas = list(map(int, input().split()))
+    print('#%d'%tc, solve1())

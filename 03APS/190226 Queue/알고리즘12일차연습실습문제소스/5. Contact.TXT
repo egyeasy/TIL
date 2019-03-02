@@ -1,0 +1,38 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+
+
+def BFS(v):
+    ans = f = r = -1
+    visited = [0] * 101
+
+    r += 1; q[r] = v
+    visited[v] = 1;
+    r += 1; q[r] = -1       # 같은 레벨 마크
+
+    while True:
+        f += 1; v = q[f]
+        if ans < v : ans = v
+
+        if v == -1:
+            if f == r : return ans
+            r += 1; ans = q[r] = -1
+            continue
+
+        for i in range(G[v][0]):
+            if not visited[G[v][i + 1]]:
+                visited[G[v][i + 1]] = 1
+                r += 1; q[r] = G[v][i + 1]
+
+q = [0] * 200
+for tc in range(1, 11):
+    N, S = map(int, input().split())
+    G = [[0] * 100 for i in range(101)]
+    edges = list(map(int, input().split()))
+
+    for i in range(N//2):
+        u, v = edges[i*2: i*2 + 2]
+        G[u][0] += 1
+        G[u][G[u][0]] = v
+
+    print('#%d'%tc, BFS(S))

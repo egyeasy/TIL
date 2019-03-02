@@ -1,0 +1,57 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+
+
+def bfs1():
+    dx = [0, 0, 1, -1]
+    dy = [1, -1, 0, 0]
+    s = []
+
+    maze[sX][sY] = 1
+    s.append([sX, sY, 0])
+
+    while len(s) != 0:
+        x, y, depth = s.pop(0)
+        for i in range(4):
+            xx = x + dx[i]
+            yy = y + dy[i]
+            if 0 <= xx < N and 0 <= yy < N:
+                if maze[xx][yy] == 3:
+                    return depth
+                if maze[xx][yy] == 0:
+                    maze[xx][yy] = 1
+                    s.append([xx, yy, depth + 1])
+    return 0
+
+
+def bfs():
+    dx = [0, 0, 1, -1]
+    dy = [1, -1, 0, 0]
+    visited = [[0] * N for _ in range(N)]
+    s = []
+    s.append([sX, sY])
+    visited[sX][sY] = 0
+
+    while len(s) != 0:
+        x, y = s.pop(0)
+        for i in range(4):
+            newX = x + dx[i]
+            newY = y + dy[i]
+            if 0 <= newX < N and 0 <= newY < N :
+                if maze[newX][newY] == 3:
+                    return visited[x][y]
+                elif maze[newX][newY] == 0 and visited[newX][newY] == 0:
+                    s.append([newX, newY])
+                    visited[newX][newY] = visited[x][y] + 1
+    return 0
+
+
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    maze = [[int(x) for x in input()] for _ in range(N)]
+    for i in range(N):
+        if 2 in maze[i]:
+            sX = i
+            sY = maze[i].index(2)
+    print('#%d'%tc, bfs1())

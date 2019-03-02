@@ -1,0 +1,84 @@
+import random
+import time
+
+
+def merge_sort(m):
+    if len(m) <= 1 :
+        return m
+
+    mid = len(m) // 2
+
+    left = merge_sort(m[:mid])
+    right = merge_sort(m[mid:])
+
+    result = []
+    while len(left) > 0 and len(right) > 0 :
+        if left[0] <= right[0] :
+            result.append(left.pop(0))
+        else :
+            result.append(right.pop(0))
+    # if len(left) > 0 :
+    #     result.extend(left)
+    # if len(right) > 0 :
+    #     result.extend(right)
+
+    # if len(left) > 0 :
+    #     for i in range(len(left)):
+    #         result.append(left.pop(0))
+    # if len(right) > 0 :
+    #     for i in range(len(right)):
+    #         result.append(right.pop(0))
+
+    # if len(left) > 0 :
+    #     result += left
+    #
+    # if len(right) > 0 :
+    #     result += right
+
+
+    return result
+
+
+def merge_sort1(m):
+    if len(m) <= 1:
+        return m
+
+    left = merge_sort1(m[:len(m)//2])
+    right = merge_sort1(m[len(m)//2:])
+
+    i, j, k = 0, 0, 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            m[k] = left[i]
+            i += 1
+        else:
+            m[k] = right[j]
+            j += 1
+        k += 1
+
+    if i == len(left): #만약 left의 원소를 모두 채웠고, right가 남아있을 때.
+        while j < len(right):
+            m[k] = right[j]
+            j += 1
+            k += 1
+    elif j == len(right): #만약 right의 원소를 모두 채웠고, left가 남아있을 때.
+        while i < len(left):
+            m[k] = left[i]
+            i += 1
+            k += 1
+    return m
+
+arr = [random.randint(1,100) for _ in range(1000000)]
+
+# arr = [69, 10, 30, 2, 16, 8, 31, 22]
+
+arr1 = arr[:]
+
+st = time.time()
+print( merge_sort(arr)[:10] )
+print(time.time() - st)
+
+st = time.time()
+print( merge_sort1(arr1)[:10] )
+print(time.time() - st)
+

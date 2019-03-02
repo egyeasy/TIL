@@ -1,0 +1,36 @@
+import sys
+sys.stdin = open("input.txt", "r")
+
+def rotate90(A, B):
+    for i in range(matN):
+        for j in range(matN):
+            B[j][matN-i-1] = A[i][j]
+
+TC = int(input())
+for tc in range(1, TC+1):
+    matN = int(input())
+    mat0 = [[0] * matN for _ in range(matN)]
+    mat1 = [[0] * matN for _ in range(matN)]
+    mat2 = [[0] * matN for _ in range(matN)]
+    mat3 = [[0] * matN for _ in range(matN)]
+
+    for i in range(matN):
+        mat0[i] = list(map(int, input().split()))
+
+    rotate90(mat0, mat1)
+    rotate90(mat1, mat2)
+    rotate90(mat2, mat3)
+
+    print("#%d"%tc)
+
+    for i in range(matN):
+        for j in range(matN):
+            print("%d"%mat1[i][j], end='')
+        print(end=' ')
+        for j in range(matN):
+            print("%d"%mat2[i][j], end='')
+        print(end=' ')
+        for j in range(matN):
+            print("%d"%mat3[i][j], end='')
+        print()
+

@@ -1,0 +1,32 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+
+def BFS(v):
+    f = r = -1
+    r += 1; q[r] = v
+
+    visited[v] = 1;
+
+    while f != r:
+        f += 1; v = q[f]
+        for i in range(1, V + 1):
+            if G[v][i] and visited[i] == 0:
+                if end == i:
+                    return visited[v]
+                r += 1; q[r] = i
+                visited[i] = visited[v] + 1
+    return 0
+
+q = [0] * 1000
+T = int(input())
+for tc in range(1, T+1):
+    V, E = map(int, input().split())
+    visited = [0] * (V+1)
+    G = [[0] * (V + 1) for _ in range(V + 1)]
+
+    for _ in range(E):
+        s, t = map(int, input().split())
+        G[s][t] = G[t][s] = 1
+    start, end = map(int, input().split())
+
+    print('#%d'%tc, BFS(start))
