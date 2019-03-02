@@ -17,7 +17,7 @@ for tc in range(1, T + 1):
         results[0] = mat[i]
         for j in range(9):
             results[1].append(mat[j][i])
-            results[2].append(mat[j // 3 + (i // 3) * 3][j % 3 + (i // 3) * 3])
+            results[2].append(mat[j // 3 + (i // 3) * 3][j % 3 + (i % 3) * 3])
         for j in range(3):
             if len(set(results[j])) != 9:
                 judge = 0

@@ -1,8 +1,7 @@
 import sys
 sys.stdin = open('7-4.txt', 'r')
+## failed - runtime error ##
 # 처음, 끝에 추가, 삭제할 경우 head, tail
-
-length = 1
 
 class Node:
     def __init__(self, item, prev=None, next=None):
@@ -29,14 +28,14 @@ def find(idx):
     while p != tail:
         if curr_idx == idx:
             break
-        print(f"curr_idx: {curr_idx}, idx: {idx}, p: {p.data}")
+        # print(f"curr_idx: {curr_idx}, idx: {idx}, p: {p.data}")
         curr_idx += 1
         p = p.next
     if curr_idx == idx:
-        print(f"found {p.data}")
+        # print(f"found {p.data}")
         return p
-    else:
-        print("not found")
+    # else:
+    #     print("not found")
 
 
 def insert(idx, item):
@@ -70,14 +69,12 @@ def change(idx, item):
 
 
 def traverse():
-    global length
     p = head
     print(f"head: {head.data} tail: {tail.data}")
     while p != tail:
-        print(p.data, length, end=" ")
+        print(p.data, end=" ")
         p = p.next
     print(p.data)
-    print()
 
 
 T = int(input())
@@ -94,24 +91,24 @@ for tc in range(1, T + 1):
         push(num)
         length += 1
 
-    traverse()
+    # traverse()
 
     for _ in range(times_m):
         command = input().split()
         if command[0] == 'I':
-            print("insert", command[1], command[2])
+            # print("insert", command[1], command[2])
             insert(int(command[1]), int(command[2]))
             length += 1
-            traverse()
+            # traverse()
         elif command[0] == 'D':
-            print("delete", command[1])
+            # print("delete", command[1])
             delete(int(command[1]))
             length -= 1
-            traverse()
+            # traverse()
         else:
-            print("change", command[1], command[2])
+            # print("change", command[1], command[2])
             change(int(command[1]), int(command[2]))
-            traverse()
+            # traverse()
     
     result = find(print_l)
     
@@ -120,3 +117,5 @@ for tc in range(1, T + 1):
     else:
         print(f"#{tc} -1")
 
+
+        

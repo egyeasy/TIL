@@ -1,127 +1,86 @@
+# single, next(link) insert, no tail
+
 import sys
 sys.stdin = open('7-4.txt', 'r')
-# 처음, 끝에 추가, 삭제할 경우 head, tail
 
 class Node:
-    def __init__(self, item, prev=None, next=None):
+    def __init__(self, item, link=None):
         self.data = item
-        self.prev = prev
-        self.next = next
+        self.link = link
 
-def push(item):
-    global head, tail
-    if not head:
-        head = Node(item)
-        tail = head
-    else:
-        # 0번 index에 insert할 경우 대비해 head와 tail을 연결
-        newNode = Node(item, tail)
-        tail.next = newNode
-        tail = newNode
 
 def find(idx):
-    curr_idx = 0
+    curr_idx = -1
     p = head
-    # if 시간 초과 => p = tail로 두는 방법도 생각해볼 것
-    while p != tail:
-        if curr_idx == idx:
-            break
-        print(f"curr_idx: {curr_idx}, idx: {idx}, p: {p.data}")
-        curr_idx += 1
-        p = p.next
-    if curr_idx == idx:
-        print(f"found {p.data}")
+    if idx == 0:
         return p
-    else:
-        print("not found")
+    while p.link:
+        # print(p.data)
+        if curr_idx == idx - 1:
+            break
+        curr_idx += 1
+        p = p.link
+    if curr_idx == idx - 1:
+        return p
+    # else:
+    #     print("not found")
 
+def push(item):
+    p = head
+    while p.link:
+        p = p.link
+    p.link = Node(item)
 
 def insert(idx, item):
-    global head
-    post = find(idx)
-    if idx == 0:
-        newNode = Node(item, next=post)
-        post.prev = newNode
-        head = newNode
-    else:
-        newNode = Node(item, post.prev, post)
-        post.prev.next = newNode
-        post.prev = newNode
+    prev = find(idx)
+    prev.link = Node(item, prev.link)
 
 def delete(idx):
-    global tail, head
-    p = find(idx)
-    if idx == 0:
-        post = p.next
-        p.next = None
-        post.prev = None
-        head = post
-    elif idx == length:
-        prev = p.prev
-        p.prev = None
-        prev.next = None
-        tail = prev
-    else:
-        prev = p.prev
-        post = p.next
-        prev.next = post
-        post.prev = prev
-        p.prev = None
-        p.post = None
+    prev = find(idx)
+    prev.link = prev.link.link
 
 def change(idx, item):
-    p = find(idx)
-    p.data = item
-
+    prev = find(idx)
+    prev.link.data = item
 
 def traverse():
-    global length
     p = head
-    print(f"head: {head.data} tail: {tail.data}")
-    while p != tail:
-        print(p.data, length, end=" ")
-        p = p.next
-    print(p.data)
+    while p.link:
+        p = p.link
+        print(p.data, end=" ")
     print()
-
+    print()
 
 T = int(input())
 for tc in range(1, T + 1):
-    n, times_m, print_l = map(int, input().split())
+    n, times_m, idx_l = map(int, input().split())
     nums = list(map(int, input().split()))
 
-    head = None
-    tail = None
-
-    length = -1
+    head = Node(None)
 
     for num in nums:
         push(num)
-        length += 1
 
-    traverse()
+    # traverse()
 
-    for _ in range(times_m):
-        command = input().split()
-        if command[0] == 'I':
-            print("insert", command[1], command[2])
-            insert(int(command[1]), int(command[2]))
-            length += 1
-            traverse()
-        elif command[0] == 'D':
-            print("delete", command[1])
-            delete(int(command[1]))
-            length -= 1
-            traverse()
+    for i in range(times_m):
+        comm = input().split()
+        # print(comm)
+        if comm[0] == 'I':
+            insert(int(comm[1]), int(comm[2]))
+            # print(f"insert {comm[1]} {comm[2]}")
+            # traverse()
+        elif comm[0] == 'D':
+            delete(int(comm[1]))
+            # print(f"delete {comm[1]}")
+            # traverse()
         else:
-            print("change", command[1], command[2])
-            change(int(command[1]), int(command[2]))
-            traverse()
-    
-    result = find(print_l)
-    
-    if result:
-        print(f"#{tc} {result.data}")
+            change(int(comm[1]), int(comm[2]))
+            # print(f"change {comm[1]} with {comm[2]}")
+            # traverse()
+
+    prev = find(idx_l)
+    if prev:
+        print(f"#{tc} {prev.link.data}")
     else:
         print(f"#{tc} -1")
-

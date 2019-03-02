@@ -1,5 +1,6 @@
 import sys
 sys.stdin = open('7-4.txt', 'r')
+## failed - runtime error ##
 # 처음, 끝에 추가, 삭제할 경우 head, tail
 
 class Node:
@@ -14,7 +15,7 @@ def push(item):
         head = Node(item)
         tail = head
     else:
-        # 0번 index에 insert할 경우 대비해 head와 tail을 연결
+        # head-tail 연결 X
         newNode = Node(item, tail)
         tail.next = newNode
         tail = newNode
