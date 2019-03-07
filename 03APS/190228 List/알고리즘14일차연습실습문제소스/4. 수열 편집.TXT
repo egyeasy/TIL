@@ -1,0 +1,54 @@
+
+class Node:
+    def __init__(self, data, link=None):
+        self.data = data
+        self.link = link
+
+
+def add(data, idx, p, n):
+    while n < idx - 1:
+        p = p.link
+        n += 1
+    p.link = Node(data, p.link)
+
+
+def delete(idx, p, n):
+    while n < idx - 1:
+        p = p.link
+        n += 1
+    p.link = p.link.link
+
+
+def exchange(data, idx, p, n):
+    while n < idx:
+        p = p.link
+        n += 1
+    p.data = data
+
+
+def get(idx, p, n):
+    while p and n < idx:
+        p = p.link
+        n += 1
+    if not p : return -1
+    return p.data
+
+
+T = int(input())
+for tc in range(1, T + 1):
+    N, M, L = map(int, input().split())
+
+    nums = list(map(int, input().split()))
+    pHead = Node(nums[0])
+    p = pHead
+    for i in range(1, N):
+        p.link = Node(nums[i])
+        p = p.link
+
+    for i in range(M):
+        s = list(input().split())
+        if   (s[0] == 'I'):  add(s[2], int(s[1]), pHead, 0)
+        elif (s[0] == 'D'):  delete(int(s[1]), pHead, 0)
+        elif (s[0] == 'C'):  exchange(s[2], int(s[1]), pHead, 0)
+
+    print('#%d'%tc, get(L, pHead, 0))

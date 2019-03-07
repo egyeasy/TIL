@@ -1,0 +1,27 @@
+import sys
+sys.stdin = open("input.txt", "r")
+
+
+def traverse(T):
+    global cnt
+    if T:
+        cnt += 1
+        traverse(tree[T][0])
+        traverse(tree[T][1])
+
+TC = int(input())
+for tc in range(1, TC + 1):
+    edgeN, N = list(map(int, (input().split())))
+    tree = [[0] * 2 for _ in range(edgeN + 2)]
+
+    edges = list(map(int, input().split()))
+
+    for i in range(edgeN):
+        parent, child = edges[i * 2], edges[i * 2 + 1]
+        if not tree[parent][0]:
+            tree[parent][0] = child
+        else:
+            tree[parent][1] = child
+    cnt = 0
+    traverse(N)
+    print("#%d"%tc, cnt)

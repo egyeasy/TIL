@@ -1,0 +1,21 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+
+def inorder_traversal(idx):
+    global num
+    if idx <= N:
+        inorder_traversal(idx * 2)
+        tree[idx] = num
+        num += 1
+        inorder_traversal(idx * 2 + 1)
+
+T = int(input())
+for tc in range(1, T + 1):
+    N = int(input())
+
+    num = 1
+    tree = [0 for i in range(N + 1)]
+    inorder_traversal(1)
+    print('#%d'%tc, tree[1], tree[N // 2])
+
+

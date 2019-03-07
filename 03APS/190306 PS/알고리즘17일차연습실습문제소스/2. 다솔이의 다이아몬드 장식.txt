@@ -1,0 +1,34 @@
+import sys
+sys.stdin = open("input.txt", "r")
+
+pattern = [
+    '..#..',
+    '.#.#.',
+    '#. .#',
+    '.#.#.',
+    '..#..'
+]
+
+pattern1 = [
+    '.#..',
+    '#.#.',
+    '. .#',
+    '#.#.',
+    '.#..'
+]
+
+TC = int(input())
+for tc in range(1, TC + 1):
+    str = input()
+
+    ans = pattern[:]
+    ans[2] = ans[2][:2] + str[0] + ans[2][3:]
+    for i in range(5):
+        for j in range(1, len(str)):
+            if i == 2:
+                pattern1[2] = pattern1[2][:1] + str[j] + pattern1[2][2:]
+            ans[i] += pattern1[i]
+
+    for i in range(5):
+        print(ans[i])
+

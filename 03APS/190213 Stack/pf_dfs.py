@@ -1,3 +1,5 @@
+top = -1
+
 def push(x):
     global top # 함수 정의 내에서 global top을 read할 수 있으나 write(수정)할 수는 없다.
     top += 1

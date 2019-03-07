@@ -1,3 +1,4 @@
+rear = None
 class Node:
     def __init__(self, item, n=None):
         self.item = item

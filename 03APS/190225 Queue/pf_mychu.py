@@ -1,11 +1,11 @@
-# 임의로 써봄
-# candis = 20
-# q = [i for i in range(20)]
-# f = 0
-# r = 0
-# nextsn = 2
-# studcan = [1] * 21
-
+## 임의로 써봄
+candis = 20
+q = [i for i in range(20)]
+f = 0
+r = 0
+nextsn = 2
+studcan = [1] * 21
+##
 
     
 while candis > 0:

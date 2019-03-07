@@ -1,0 +1,46 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+
+class Node:
+    def __init__(self, data, link):
+        self.data = data
+        self.link = link
+
+def add(data, idx):
+    p = pHead
+    n = 0
+    while n < idx - 1:
+        p = p.link
+        n += 1
+
+    p.link = Node(data, p.link)
+    return
+
+def get(idx):
+    p = pHead
+    n = 0
+    while n < idx:
+        p = p.link
+        n += 1
+    return p.data
+
+
+T = int(input())
+for tc in range(1, T + 1):
+    N, M, L = map(int, input().split())
+    pHead = None
+
+    s = list(map(int, input().split()))
+
+    pHead = Node(s[0], None)
+    pTail = pHead
+    for i in range(1, N):
+        pTail.link = Node(s[i], None)
+        pTail = pTail.link
+
+
+    for i in range(M):
+        idx, data = map(int, input().split())
+        add(data, idx)
+
+    print('#%d'%tc, get(L))

@@ -1,0 +1,16 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+
+T = int(input())
+for tc in range(1, T + 1):
+    N, M, pos = map(int, input().split())
+    tree = [0 for i in range(N + 2)]
+
+    for i in range(M):
+         idx, val = map(int, input().split())
+         tree[idx] = val
+
+    for i in range(N - M, 1, -1):
+        tree[i] = tree[i*2] + tree[i*2+1]
+
+    print("#%d"%tc, tree[pos])

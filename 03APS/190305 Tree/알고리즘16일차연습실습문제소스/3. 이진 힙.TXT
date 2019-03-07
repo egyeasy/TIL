@@ -1,0 +1,30 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+
+T = int(input())
+for tc in range(1, T + 1):
+    N = int(input())
+    templ = [0] + list(map(int, input().split()))
+    heap = [0 for i in range(N + 1)]
+
+    for i in range(1, N + 1):
+        heap[i] = templ[i]
+        c = i
+        p = c//2
+        while p :
+            if heap[p] >= heap[c]:
+                heap[p], heap[c] = heap[c], heap[p]
+                c = p
+                p //= 2
+            else:
+                break
+
+    sum = 0
+    p = N // 2
+
+    while p :
+        sum += heap[p]
+        p //= 2
+
+    print("#%d"%tc, sum)
+

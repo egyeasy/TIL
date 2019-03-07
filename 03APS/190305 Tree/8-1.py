@@ -1,6 +1,8 @@
 import sys
 sys.stdin = open('8-1.txt', 'r')
 
+cnt = 0
+
 def pre_order(idx):
     global cnt
     if idx:

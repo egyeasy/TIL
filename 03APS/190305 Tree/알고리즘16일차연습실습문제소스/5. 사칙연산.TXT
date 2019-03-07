@@ -1,0 +1,31 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+
+def postorder_traversal(T):
+    if not tree[T][1]: return  tree[T][0]
+
+    v1 = postorder_traversal(tree[T][1])
+    v2 = postorder_traversal(tree[T][2])
+
+    if tree[T][0] == '+' : return v1 + v2
+    if tree[T][0] == '-' : return v1 - v2
+    if tree[T][0] == '*' : return v1 * v2
+    if tree[T][0] == '/' : return v1 // v2
+
+
+for tc in range(1, 11):
+    N = int(input())
+    tree = [[0] * 3 for i in range(N + 1)]
+
+    for i in range(1, N + 1):
+        tmpl = input().split()
+        if len(tmpl) > 2:
+            tree[i][0] = tmpl[1]
+            tree[i][1:3] = map(int, tmpl[2:4])
+        else:
+            tree[i][0] = int(tmpl[1])
+
+    print("#%d"%tc, postorder_traversal(1))
+
+
+

@@ -1,0 +1,30 @@
+import sys
+sys.stdin = open("input.txt", "r")
+
+TC = int(input())
+for tc in range(1, TC + 1):
+    mat = [[0] * 9 for _ in range(9)]
+    for i in range(9):
+        mat[i] = list(map(int, input().split()))
+
+    ans = 1
+    for i in range(9):
+        cnt = [0] * 10
+        for j in range(9):
+            if cnt[mat[i][j]] != 0 : ans = 0
+            else: cnt[mat[i][j]] += 1
+
+        cnt = [0] * 10
+        for j in range(9):
+            if cnt[mat[j][i]] != 0 : ans = 0
+            else: cnt[mat[j][i]] += 1
+
+    for k in [0, 3, 6]:
+        for kk in [0, 3, 6]:
+            cnt = [0] * 10
+            for i in range(k, k + 3):
+                for j in range(kk, kk + 3):
+                    if cnt[mat[i][j]] != 0: ans = 0
+                    else: cnt[mat[i][j]] = 1
+
+    print("#%d"%tc, ans)

@@ -1,3 +1,5 @@
+cnt = 0
+
 def backtrack(a, k, sum):
     global cnt
     cnt += 1

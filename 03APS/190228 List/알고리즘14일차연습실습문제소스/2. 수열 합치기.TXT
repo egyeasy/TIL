@@ -1,0 +1,63 @@
+import sys
+sys.stdin = open("input.txt", 'r')
+
+class Node:
+    def __init__(self, data, pre = None, link = None):
+        self.data = data
+        self.pre = pre
+        self.link = link
+
+
+def addNumbers():
+    global pHead, pTail
+    p = pHead
+
+    while p.link != None and p.data <= nums[0]:
+        p = p.link
+
+    if p.data > nums[0]:
+        if p.pre == None:
+            p.pre = Node(nums[0], None, p)
+            pHead = p.pre
+            for i in range(1, N):
+                p.pre.link = Node(nums[i], p.pre, p)
+                p.pre = p.pre.link
+        else:
+            for i in range(N):
+                p.pre.link = Node(nums[i], p.pre, p)
+                p.pre = p.pre.link
+
+    else:
+        p = pTail
+        for i in range(N):
+            p.link = Node(nums[i], pTail)
+            pTail = p.link
+
+
+
+def getnums10r():
+    p = pTail
+    for i in range(10):
+        print(p.data, end=' ')
+        p = p.pre
+    print()
+
+
+
+T = int(input())
+
+for tc in range(1, T + 1):
+    N, M = map(int, input().split())
+
+    nums = list(map(int, input().split()))
+    pHead = Node(nums[0])
+    pTail = pHead
+    for i in range(1, N):
+        pTail.link = Node(nums[i], pTail)
+        pTail = pTail.link
+
+    for i in range(1, M):
+        nums = list(map(int, input().split()))
+        addNumbers()
+    print('#%d'%tc, end=' ')
+    getnums10r()

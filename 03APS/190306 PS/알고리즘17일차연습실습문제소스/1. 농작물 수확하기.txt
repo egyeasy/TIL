@@ -1,0 +1,24 @@
+import sys
+sys.stdin = open("input.txt", "r")
+
+TC = int(input())
+for tc in range(1, TC + 1):
+    N = int(input())
+
+    arr = [[0] * N for _ in range(N)]
+
+    for i in range(N):
+        arr[i] = list(map(int, input()[:]))
+
+    ans = 0
+
+    idx = N // 2
+    for j in range(N):
+        ans += arr[idx][j]
+
+    for i in range(1, N//2 + 1):
+        for j in range(i, N - i):
+            ans += arr[idx - i][j]
+            ans += arr[idx + i][j]
+
+    print("#%d"%tc, ans)

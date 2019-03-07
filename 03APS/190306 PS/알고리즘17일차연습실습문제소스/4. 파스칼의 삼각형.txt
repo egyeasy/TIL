@@ -1,0 +1,22 @@
+import sys
+sys.stdin = open("input.txt", 'r')
+
+mat = [[0] * 10 for _ in range(10)]
+
+for i in range(10):
+    mat[i][i] = 1
+    mat[i][0] = 1
+
+for i in range(2, 10):
+    for j in range(1, i + 1):
+        mat[i][j] = mat[i-1][j-1] + mat[i-1][j]
+
+TC = int(input())
+for tc in range(1, TC + 1):
+    n = int(input())
+    print("#%d"%tc)
+    for i in range(n):
+        for j in range(i+1):
+            print(mat[i][j], end = ' ')
+        print()
+
