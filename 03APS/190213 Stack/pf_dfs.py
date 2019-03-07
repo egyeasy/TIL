@@ -23,7 +23,7 @@ def DFS(v):
         w = findnext(v)
         if w : push(v)
         while w:
-            print(w)
+            # print(w)
             visited[w] = True
             push(w)
             v = w
