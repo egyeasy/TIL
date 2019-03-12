@@ -32,6 +32,14 @@ https://spoqa.github.io/
 
 
 
+### 오렐리 - http 완벽 가이드
+
+
+
+### Siraj Raval - web 3.0
+
+https://www.youtube.com/watch?v=aPVmd7SyKfQ
+
 
 
 
