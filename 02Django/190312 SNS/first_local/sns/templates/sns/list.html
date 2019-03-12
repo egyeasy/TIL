@@ -1,0 +1,33 @@
+{% extends 'sns/base.html' %}
+{% block is_list %}
+    active
+{% endblock %}
+{% block body %}
+    {% include 'sns/_forms.html' %}
+    <hr>
+
+
+    {% if postings %}
+        <section class="card-columns">
+            {% for posting in postings %}
+                <article class="card mb-2">
+                    <a href="{% url 'sns:posting_detail' posting.id %}">
+                        {% if posting.image %}
+                            <img src="{{ posting.image_thumbnail.url }}"
+                                 alt="{{ posting.image }}" {# 파일의 이름이 alt에 들어감 #}
+                                 class="card-img-top image-fluid">
+                        {% else %}
+                            <img src="http://picsum.photos/32{{ forloop.counter }}/580/?random" {# image 없을 때 random 이미지를 받아서 넣어준다 #}
+{#                                    32x 크기의 이미지를 가져오기 때문에 랜덤하게 가져온다#}
+                                 alt="random_image_{{ forloop.counter }}" {# for문 돈 만큼 counter 해줌 #}
+                                 class="card-img-top image-fluid">
+                        {% endif %}
+                    </a>
+                    <div class="card-body">
+                        <i class="{{ posting.icon }} fa-3x"></i>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    {% endif %}
+{% endblock %}
