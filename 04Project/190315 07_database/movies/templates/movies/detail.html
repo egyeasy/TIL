@@ -1,0 +1,12 @@
+{% extends 'movies/base.html' %}
+{% block body %}
+    <img src="{{ movie.poster_url }}" alt="poster of {{ movie.title }}">
+    <h2>{{ movie.title }}</h2>
+    <h2>{{ movie.genre }}</h2>
+    <h2>{{ movie.audience }}명</h2>
+    <h4>{{ movie.description }}</h4>
+    <a href="{% url 'movies:movie_list' %}">목록</a>
+    <a href="{% url 'movies:movie_edit' movie.id %}">수정</a>
+    <a href="{% url 'movies:delete_movie' movie.id %}">삭제</a>
+    {% include 'movies/_create_score.html' %}
+{% endblock %}

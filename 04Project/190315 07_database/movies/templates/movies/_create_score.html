@@ -1,0 +1,16 @@
+<form action="{% url 'movies:create_score' movie.id %}" method="POST">
+    {% csrf_token %}
+    <label for="content">한줄평</label>
+    <input type="text" name="content" id="content" autofocus>
+    <label for="score">평점</label>
+    <input type="number" name="score" id="score" min="1" max="5">
+    <button type="submit">작성</button>
+</form>
+
+{% if scores %}
+    <ul>
+        {% for score in scores %}
+            <div>내용 : {{ score.content }}, 평점 : {{ score.score }} <a href="{% url 'movies:delete_score' movie.id score.id %}">삭제</a></div>
+        {% endfor %}
+    </ul>
+{% endif %}
