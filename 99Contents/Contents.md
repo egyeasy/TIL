@@ -42,6 +42,10 @@ https://www.youtube.com/watch?v=aPVmd7SyKfQ
 
 
 
+### cryptography
+
+youtube - how secure is 256 bit security?
+
 
 
 # 내가 정리
