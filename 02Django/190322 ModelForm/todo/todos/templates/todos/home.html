@@ -1,0 +1,49 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+    <h1>Todo List</h1>
+    <form action="/create/" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="content" class="form-control">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary">만들기</button>
+        </div>
+    </form>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">내용</th>
+          <th scope="col">완료 여부</th>
+          <th scope="col">체크</th>
+          <th scope="col">삭제</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in todos %}
+            {% if not todo.completed %}
+            <tr>
+              <th scope="row">{{ todo.user }}</th>
+              <td>{{ todo.content }}</td>
+              <td>{{ todo.completed }}</td>
+              <td><button class="btn btn-dark"><a href="{% url 'todos:check' todo.id %}">체크</a></button></td>
+              <td><button class="btn btn-dark"><a href="{% url 'todos:delete' todo.id %}">삭제</a></button></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        {% for todo in todos %}
+            {% if todo.completed %}
+                <tr>
+                  <th scope="row">{{ todo.user }}</th>
+                  <td><strike>{{ todo.content }}</strike></td>
+                  <td>{{ todo.completed }}</td>
+                  <td><button class="btn btn-dark"><a href="{% url 'todos:check' todo.id %}">체크</a></button></td>
+                  <td><button class="btn btn-dark"><a href="{% url 'todos:delete' todo.id %}">삭제</a></button></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}
