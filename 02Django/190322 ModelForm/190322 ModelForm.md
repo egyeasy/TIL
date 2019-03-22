@@ -1,3 +1,15 @@
+# Project08 - 데이터베이스 seeding
+
+기존의 데이터 - data seed
+
+시드를 넣는 작업을 seeding이라고 함.
+
+fixture - 1) 시드 데이터를 넣는 기능. 2) 테스트 코드의 인풋 데이터
+
+
+
+
+
 # 190322 Model Form
 
 ## todo project에 이어서 만들기
@@ -560,7 +572,7 @@ def home(request):
         # 고객센터 문의 작성하기
         form = ShoutModelForm(request.POST)
         # form = ShoutForm(request.POST)
-        if form.is_vaild(): # 날아온 데이터가 제대로 돼있을 때를 검증
+        if form.is_valid(): # 날아온 데이터가 제대로 돼있을 때를 검증
             form.save() # 이 한 문장으로 해결!
             
             # # form이 필터링한 데이터를 쓴다
@@ -979,7 +991,48 @@ def register(request):
 
 
 
+## modelForm에서 foreign key 처리(todos app)
 
+### todos/forms.py(만들기)
+
+```python
+from django import forms
+from .models import Todo
+
+
+class TodoForm(forms.ModelForm):
+    class Meta:
+        model = Todo
+        fields = "__all__"
+```
+
+
+
+### todos/views.py
+
+instance를 지정해주면 기본적으로 값을 채워서 TodoForm으로 만들 수 있다()
+
+```python
+from .forms import TodoForm
+
+def create(request):
+    # todos 작성하기
+    # content = request.POST.get('content')
+    # user_id = User.objects.first().id # 이건 첫번째 유저만 가져온다!
+    # current_user_id = request.user.id
+    # # completed = request.POST.get('completed')
+    # # 현재 접속해있는 유저의 아이디
+    # Todo.objects.create(content=content, user_id=current_user_id)
+    ### 방법 1
+    user = request.user  # 유저 객체를 받아오고
+    todo = Todo(user=user)  # todo를 만들어서 미리 user 칼럼을 채워줌
+    form = TodoForm(request.POST, instance=todo)
+    if form.is_valid():
+        form.save()
+
+    return redirect('todos:home')
+
+```
 
 
 

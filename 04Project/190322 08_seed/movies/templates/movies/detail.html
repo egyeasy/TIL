@@ -1,0 +1,22 @@
+{% extends 'movies/base.html' %}
+{% block body %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <img src="{{ movie.poster_url }}" alt="poster of {{ movie.title }}">
+    <h2>{{ movie.title }}</h2>
+    <h2>{{ movie.genre_id.name }}</h2>
+    <h2>{{ movie.audience }}명</h2>
+    <h4>{{ movie.description }}</h4>
+    <a href="{% url 'movies:movie_list' %}">목록</a>
+    <a href="{% url 'movies:edit_movie' movie.id %}">수정</a>
+    <a href="{% url 'movies:delete_movie' movie.id %}">삭제</a>
+    {% include 'movies/_create_score.html' %}
+{% endblock %}

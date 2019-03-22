@@ -1,0 +1,28 @@
+{% extends 'movies/base.html' %}
+
+{% block body %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if request.resolver_match.url_name == 'edit_movie' %}
+        <form action="{% url 'movies:edit_movie' form.instance.id %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="수정">
+        </form>
+    {% else %}
+        <form action="{% url 'movies:movie_new' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="추가">
+        </form>
+    {% endif %}
+
+{% endblock %}
