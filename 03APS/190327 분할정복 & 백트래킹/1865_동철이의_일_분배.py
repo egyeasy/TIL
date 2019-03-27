@@ -1,23 +1,33 @@
 import sys
 sys.stdin = open('1865.txt', 'r')
 
+max_prob = 0
 
 def BackTrack(arr, k, max_input, curr_prob):
     global max_prob
+    print("backTrack start", arr, curr_prob, "k", k)
+    if curr_prob < max_prob:
+        return
     if k == max_input:
         if curr_prob > max_prob:
             max_prob = curr_prob
-            # print(arr)
+            print("last cands", cands)
+            print("last arr", arr)
+            print()
     else:
         k += 1
         n_cands = make_cands(arr, k, max_input)
-        print()
-        print(arr, n_cands, cands)
+        # print()
+        # print(arr, n_cands, cands)
         for i in range(n_cands):
-            if curr_prob * (mat[k - 1][cands[i]] / 100) > max_prob:
-                arr[k - 1] = cands[i]
-                print("curr_prob", curr_prob, (mat[k - 1][cands[i]] / 100))
-                BackTrack(arr, k, max_input, curr_prob * (mat[k - 1][cands[i]] / 100))
+            # if curr_prob * (mat[k - 1][cands[i]] / 100) > max_prob:
+            arr[k - 1] = cands[i]
+            print("curr_prob", curr_prob, (mat[k - 1][cands[i]] / 100))
+            BackTrack(arr, k, max_input, curr_prob * (mat[k - 1][cands[i]] / 100))
+
+    print("backtrack end")
+    print(arr,k)
+    print()
 
 def make_cands(arr, k, max_input):
     global cands
@@ -26,12 +36,15 @@ def make_cands(arr, k, max_input):
 
     for i in range(k - 1):
         in_perm[arr[i]] = 1
-
+    
+    print("perm making arr", arr, k)
+    print("perm", in_perm)
     n_cands = 0
     for i in range(N):
         if not in_perm[i]:
             cands[n_cands] = i
             n_cands += 1
+    print("cands made", cands, "k", k)
     return n_cands
 
 
