@@ -1,6 +1,7 @@
 import sys
 sys.stdin = open('1486.txt', 'r')
 
+min_sum = 0
 
 def BackTrack(arr, k, max_input, summ):
     global min_sum, found
