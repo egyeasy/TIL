@@ -22,10 +22,10 @@ def BackTrack(arr, k, max_input, summ):
         k += 1
         arr[k - 1] = 1
         BackTrack(arr, k, max_input, summ + nums[k - 1])
-        arr[k - 1] = 0
-        BackTrack(arr, k, max_input, summ)
         if found:
             return
+        arr[k - 1] = 0
+        BackTrack(arr, k, max_input, summ)
 
 T = int(input())
 for tc in range(1, T + 1):
