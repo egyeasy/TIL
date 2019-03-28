@@ -1,6 +1,8 @@
 import sys
 sys.stdin = open('1224.txt', 'r')
 
+top = 0
+
 def push(item, stack):
     global top
     stack[top + 1] = item

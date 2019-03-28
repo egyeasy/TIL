@@ -1,6 +1,8 @@
 import sys
 sys.stdin = open('1242.txt', 'r')
 
+total_result = 0
+
 data = {'0001101':0,
         '0011001':1,
         '0010011':2,

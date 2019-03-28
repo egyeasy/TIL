@@ -1,3 +1,4 @@
+# 매트릭스 곱셈 순서 알고리즘
 import sys
 sys.stdin = open('matrix.txt', 'r')
 

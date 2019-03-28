@@ -1,3 +1,5 @@
+rear, front = 0, 0
+
 def enqueue(item):
     global rear
     if isfull():
