@@ -1,7 +1,12 @@
+# 짜다 말았음
+
 import sys
 sys.stdin = open('02.txt', 'r')
 
 import itertools
+
+
+cands = []
 
 def judge_babygin(nums):
     global tc_judge
@@ -32,7 +37,7 @@ def dfs(arr, k, max_input):
         dfs(arr, k, max_input)
 
 def make_cand(arr, k, max_input):
-    pass
+    return 0
 
 
 

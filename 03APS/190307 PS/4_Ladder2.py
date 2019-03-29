@@ -4,7 +4,7 @@ sys.stdin = open('4.txt', 'r')
 from collections import deque
 
 def bfs(s):
-    global go_cnt
+    global go_cnt, mat
     dq.append(s)
     go_cnt = 0
     while dq:

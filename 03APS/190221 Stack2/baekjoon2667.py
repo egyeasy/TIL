@@ -12,6 +12,8 @@
 import sys
 sys.stdin = open('2667.txt', 'r')
 
+each_cnt = 0
+
 def DFS(s):
     global each_cnt
     visited[s[0]][s[1]] = 1
