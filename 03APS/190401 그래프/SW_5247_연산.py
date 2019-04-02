@@ -30,7 +30,7 @@ for tc in range(1, T + 1):
 # for tc in range(1, 2):
     N_start, M_target = map(int, input().split())
     dq = deque()
-    visited = [0] * 1000000
+    visited = [0] * 1000001
     bfs(N_start)
     # print(visited)
     print(f"#{tc} {visited[M_target]}")
