@@ -14,7 +14,10 @@ def backtrack(nums, k):
             for j in range(i + 1, length):
                 new_nums = nums[:]
                 new_nums[i], new_nums[j] = new_nums[j], new_nums[i]
-                backtrack(new_nums, k)
+                this_value = int(''.join(map(str, new_nums)))
+                if k not in visited[this_value]:
+                    visited[this_value].append(k)
+                    backtrack(new_nums, k)
 
 T = int(input())
 for tc in range(1, T + 1):
@@ -28,7 +31,7 @@ for tc in range(1, T + 1):
 
     # print(nums, max_change)
     # print(value_max)
-
+    visited = [[] for _ in range(value_max + 1)]
     global_max = 0
     backtrack(nums, 0)
     print(f"#{tc} {global_max}")
