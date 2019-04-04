@@ -125,8 +125,10 @@ for tc in range(1, T + 1):
                         # print(row, col)
                         if row < 0 or row >= N_side:
                             dir = 4 - dir
+                            this_point += 1
                         elif col < 0 or col >= N_side:
                             dir = 2 - dir
+                            this_point += 1
                         else:
                             if 1 <= mat[row][col] <= 5:
                                 dir = change_dir(mat[row][col], dir)
@@ -140,9 +142,5 @@ for tc in range(1, T + 1):
                     if this_point > max_point:
                         max_point = this_point
 
-                    # bfs([i, j, direction, 0])
-                    # if this_point > max_point:
-                    #     # print(i, j)
-                    #     max_point = this_point
 
     print(f"#{tc} {max_point}")
