@@ -10,6 +10,9 @@ def bfs(idx, visited):
         idx, former_visited = dq.popleft()
         # idx 최대 처리
         if idx >= 12:
+            this_total = calculate_total(former_visited)
+            if this_total < global_min_price:
+                global_min_price = this_total
             continue
         # 해당 idx에 3달짜리 결제할 경우
         former_quarter_price = 0
@@ -22,14 +25,11 @@ def bfs(idx, visited):
             for i in range(1, 3):
                 if idx + i < 12:
                     this_visited[idx + i] = 0
-            this_total = calculate_total(this_visited)
-            if this_total < global_min_price:
-                global_min_price = this_total
+            # this_total = calculate_total(this_visited)
+            # if this_total < global_min_price:
+            #     global_min_price = this_total
             dq.append([idx + 3, this_visited])
         # 해당 idx에 3달짜리 안 결제할 경우
-        this_total = calculate_total(former_visited)
-        if this_total < global_min_price:
-            global_min_price = this_total
         dq.append([idx + 1, former_visited[:]])
 
 
