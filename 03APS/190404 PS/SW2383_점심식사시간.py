@@ -37,7 +37,6 @@ def calculate_time(nums, num_stair):
                 go_cnt += 1
 
         # distance 0인 사람들 계단 입장
-
         if len(dq) < 3:
             for i in range(len(distances) - 1, -1, -1):
                 if distances[i] <= 0 and len(dq) < 3:

@@ -1,7 +1,3 @@
-# visited 매번 만들어주기 -> 무한반복 체크에 사용
-import sys
-sys.stdin = open('5650.txt', 'r')
-
 from collections import deque
 
 # 동남서북
