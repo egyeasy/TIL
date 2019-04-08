@@ -2,7 +2,7 @@
 
 
 
-### Steve Jobs, Bill Gates 인터뷰
+### Steve Jobs, Bill Gates 공동 인터뷰
 
 
 
@@ -42,9 +42,33 @@ https://www.youtube.com/watch?v=aPVmd7SyKfQ
 
 
 
-### cryptography
+
+
+## cryptography
 
 youtube - how secure is 256 bit security?
+
+
+
+
+
+## 알고리즘
+
+### HackerRank
+
+알고리즘 레벨을 세분화해서 쪼개놨다. 다른 곳들은 레벨이 갑자기 너무 뜀.
+
+
+
+### Programmers
+
+레벨 2까지는 완전탐색 위주라 쉽게 풀 것.
+
+
+
+
+
+## 기타
 
 
 
