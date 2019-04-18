@@ -231,7 +231,7 @@ def delete_article(reques, article_id):
 
 `$ touch base.html list.html detail.html new.html edit.html`
 
-`$ cd - ` 뒤로가기(`$ cd ..`와는 다르게 한번에 여러 디렉토리 이동 가능)
+`$ cd - ` : 뒤로가기(`$ cd ..`와는 다르게 한번에 여러 디렉토리 이동 가능)
 
 
 
