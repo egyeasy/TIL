@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+
+{% block body %}
+<a href="{% url 'accounts:list' %}"><p>뒤로가기</p></a>
+<h1>{{ target_user.username }}</h1>
+{% if user.is_authenticated %}
+  <form method="POST" action="{% url 'accounts:follow' target_user.id %}">
+    {% csrf_token %}
+    {% buttons %}
+      {% if user != target_user %}
+        {% if user in target_user.followers.all %}
+          <button type="submit" class="btn btn-primary">unfollow</button>
+        {% else %}
+          <button type="submit" class="btn btn-primary">follow</button>
+        {% endif %}
+      {% endif %}
+    {% endbuttons %}
+  </form>
+{% endif %}
+<p>
+  <div>first_name : {{ target_user.first_name }}</div>
+  <div>last_name : {{ target_user.last_name }}</div>
+</p>
+<p>
+  <div>팔로워 : <a href="{% url 'accounts:followers' target_user.id %}">{{ target_user.followers.count }}명</a></div>
+  <div>팔로잉 : <a href="{% url 'accounts:followings' target_user.id %}">{{ target_user.followings.count }}명</a></div>
+</p>
+
+{% if user == target_user %}
+  <h1>오늘의 추천</h1>
+  {% for person, movie in best_movies %}
+    <p> 
+      <div>{{ person.username }}의 최애영화</div>
+      <div>제목 : {{ movie.title }}</div>
+      <a href="{% url 'movies:detail' movie.id %}"><img src="{{ movie.poster_url }}"></a>
+    </p>
+  {% endfor %}
+{% endif %}
+{% endblock %}

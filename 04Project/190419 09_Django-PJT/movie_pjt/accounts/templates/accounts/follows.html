@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+{% if request.resolver_match.url_name == 'followers' %}
+  <h1>이 사람의 팔로워들</h1>
+{% elif request.resolver_match.url_name == 'followings' %}
+  <h1>이 사람이 팔로우하는 사람들</h1>
+{% endif %}
+
+{% for follow in follows %}
+  <p><a href="{% url 'accounts:detail' follow.id %}">{{ follow.username }}</a></p>
+{% endfor %}
+
+{% endblock %}

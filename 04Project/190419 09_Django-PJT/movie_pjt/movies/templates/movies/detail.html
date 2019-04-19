@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<h1>영화 상세정보</h1>
+<div>제목 : {{ movie.title }}</div>
+<img src="{{ movie.poster_url }}">
+<div>장르 : {{ movie.genre }}</div>
+<div>관객 수 : {{ movie.audience }}명</div>
+<div>설명 : {{ movie.description }}</div>
+
+<!--평점 생성-->
+{% if user.is_authenticated %}
+  <p>
+    <form action="{% url 'movies:create_score' movie.id %}" method="POST">
+      {% csrf_token %}
+      {{ score_form.as_p }}
+      <input type="submit" value="댓글 작성">
+    </form>
+  </p>
+{% endif %}
+
+<!--평점 나열-->
+{% for score in movie.score_set.all %}
+  <p>
+    <div>작성자: {{ score.user.username }}</div>
+    <div>평점: {{ score.value }}점</div>
+    <div>한줄평: {{ score.content }}</div>
+    {% if user == score.user %}
+      <form action="{% url 'movies:delete_score' movie.id score.id %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제">
+      </form>
+    {% endif %}
+  </p>
+{% endfor %}
+
+{% endblock %}
