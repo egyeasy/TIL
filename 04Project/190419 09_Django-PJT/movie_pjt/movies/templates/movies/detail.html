@@ -15,7 +15,7 @@
     <form action="{% url 'movies:create_score' movie.id %}" method="POST">
       {% csrf_token %}
       {{ score_form.as_p }}
-      <input type="submit" value="댓글 작성">
+      <input type="submit" value="작성">
     </form>
   </p>
 {% endif %}

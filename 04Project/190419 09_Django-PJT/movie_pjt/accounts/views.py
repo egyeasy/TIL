@@ -6,7 +6,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods, require_POST
 from movies.models import Score
-
 from .forms import UserCustomCreationForm
 
 # Create your views here.
@@ -17,11 +16,13 @@ def list(request):
     }
     return render(request, 'accounts/list.html', context)
 
-
 def detail(request, user_pk):
     target_user = get_object_or_404(get_user_model(), pk=user_pk)
+    target_email = target_user.email.encode(encoding='utf-8')
+    print(target_email)
     context = {
-        'target_user': target_user
+        'target_user': target_user,
+        'target_email': target_email,
     }
     if target_user == request.user:
         best_movies = []

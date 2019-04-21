@@ -28,14 +28,25 @@
   <div>팔로잉 : <a href="{% url 'accounts:followings' target_user.id %}">{{ target_user.followings.count }}명</a></div>
 </p>
 
-{% if user == target_user %}
-  <h1>오늘의 추천</h1>
-  {% for person, movie in best_movies %}
-    <p> 
-      <div>{{ person.username }}의 최애영화</div>
-      <div>제목 : {{ movie.title }}</div>
-      <a href="{% url 'movies:detail' movie.id %}"><img src="{{ movie.poster_url }}"></a>
-    </p>
-  {% endfor %}
+<h3>{{ target_user.username }}님의 한줄평</h3>
+{% for score in target_user.score_set.all %}
+<p>
+  <div>영화 : {{ score.movie }}</div>
+  <div>평점 : {{ score.value }}점</div>
+  <div>한줄평 : {{ score.content }}</div>
+</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+  {% if user == target_user %}
+    <h1>오늘의 추천</h1>
+    {% for person, movie in best_movies %}
+      <p> 
+        <div>{{ person.username }}의 최애영화</div>
+        <div>제목 : {{ movie.title }}</div>
+        <a href="{% url 'movies:detail' movie.id %}"><img src="{{ movie.poster_url }}"></a>
+      </p>
+    {% endfor %}
+  {% endif %}
 {% endif %}
 {% endblock %}
