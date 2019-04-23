@@ -636,3 +636,28 @@ document.addEventListener('keydown', function(event) {
 
 
 
+## JSON
+
+```js
+JSONData = "{ 'coffee': 'Americano', 'iceCream': 'Red Velvet' }" // 키값은 string을 명시해줘야 제대로 인식함
+
+const parsedData = JSON.parse(JSONData)
+
+console.log(parsedData.coffee)
+```
+
+
+
+데이터를 저렇게 생성하면 안되고, key와 밸류를 
+
+```js
+const stringObject = JSON.stringify({"coffee": "Americano", "iceCream": "Red Velvet"})
+const stringObject = JSON.stringify({'coffee': 'Americano', 'iceCream': 'Red Velvet'}) // 홑따옴표로 만들어도 쌍따옴표로 출력된다 -> 쌍따옴표로 만들자!
+console.log(stringObject)
+
+JSONData = '{"coffee": "Americano", "iceCream": "Red Velvet"}'
+const parsedData = JSON.parse(JSONData)
+console.log(parsedData.coffee)
+```
+
+직접 string으로 JSON을 만들어주려면 바깥에 홑따옴표, 안의 키, 밸류에 쌍따옴표를 써야 한다.
