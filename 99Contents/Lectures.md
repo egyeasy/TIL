@@ -23,3 +23,9 @@ khan academy - cryptography : 좀 더 라이트하게 재미있게
 coursera - bitcoin and cryptocurrency technologies 초반부 암호학
 
 youtube - how secure is 256 bit security?
+
+
+
+### 운영체제
+
+프로세스, 스레드에 대한 개념 설명 -> ops-class, Geoffrey Challen
