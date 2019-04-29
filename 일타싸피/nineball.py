@@ -7,9 +7,10 @@ from math import *
 
 # 가는 길에 다른 공이 있는지 판단하는 함수(치는 공, 타겟 공, 중간의 공)
 def judge_ball_in_way(hit, target, other):
+    print("hit", hit, "target", target, "other", other)
     judge = False
-    hit_x, hit_y = hit
-    target_x, target_y = target
+    hit_x, hit_y = hit[0], hit[1]
+    target_x, target_y = target[0], target[1]
     other_x, other_y = other[0], other[1]
     # hit과 target의 중심점을 잇는 직선의 방정식을 구하고, 그것을 평행이동하여 친 공의 진로 범위를 구할 것
     # z는 두 원점을 잇는 직선의 거리, k는 중심점 잇는 직선을 평행이동하는 정도, a는 두 원점을 잇는 직선의 기울기
@@ -18,27 +19,25 @@ def judge_ball_in_way(hit, target, other):
     a = (hit_y - target_y) / (hit_x - target_x)
     # 공의 위치에 따라 if문 분기하여 진로 내에 다른 공이 있는지 판단
     ## hit과 target의 위치 판단
-    ### 두 공이 좌하-우상의 배치에 있을 때
+    print(other_y, a, other_x, hit_x, k, hit_y, other_y, "hello")
+    ### 두 공이 좌상-우하의 배치에 있을 때
     if (hit_x < target_x and hit_y > target_y) or (hit_x > target_x and hit_y < target_y):
         # 범위 내에 공이 위치하는지 판단
         if other_y < a * (other_x - hit_x - 2*k) + hit_y and other_y > a * (other_x - hit_x + 2*k):
             judge = True
-            break
-    ### 두 공이 좌상-우하의 배치에 있을 때
+    ### 두 공이 좌하-우상의 배치에 있을 때
     elif (hit_x > target_x and hit_y > target_y) or (hit_x < target_x and hit_y < target_y):
         if other_y > a * (other_x - hit_x - 2*k) + hit_y and other_y < a * (other_x - hit_x + 2*k) + hit_y:
+            print("안됨")
             judge = True
-            break
     # 두 공이 수직으로 위치할 때
     elif hit_x == target_x:
         if hit_x - 2*radius < other_x < hit_x + 2*radius and (hit_y < other_y < target_y or target_y < other_y < hit_y):
             judge = True
-            break
     # 두 공이 수평으로 위치할 때
     elif hit_y == target_y:
         if hit_y - 2*radius < other_y < hit_y + 2*radius and (hit_x < other_x < target_x or target_x < other_x < hit_x):
             judge = True
-            break
     # else: # 이외의 경우가 있는지 잘 모르겠음. 혹시를 대비해 아무렇게나 막 치게 만들어도 좋을 듯
     return judge
 
@@ -50,7 +49,7 @@ def find_power_direction(hit, target, hole):
     min_diff_angle = 10000000
     min_diff = 100000000
     # 360도를 돌면서
-    for angle in range(0, 360):
+    for angle in range(0, 91):
         # 라디안 단위로 변환
         rad = radians(angle)
         # 각도로 돌면서 찾는 탄젠트 값과, 실제 공과 구멍 사이의 직각삼각형 탄젠트 값이 가장 가까운 각도 찾기
@@ -60,6 +59,7 @@ def find_power_direction(hit, target, hole):
         if this_diff < min_diff:
             min_diff = this_diff
             min_diff_angle = angle
+    print(min_diff_angle)
     # hole과 target의 상대적 위치에 따라 절대 각도(360도 기준) 다르게 구하기
     ## 우상단
     if delta_x >= 0 and delta_y >= 0:
@@ -100,8 +100,10 @@ def find_power_direction(hit, target, hole):
     can_hit = True
     for i in range(1, 10):
         other = balls[i]
+        print("hole", hole, "other", other)
         if judge_ball_in_way(hit, [hitting_x, hitting_y], other):
             can_hit = False
+            print("cannot hit")
             return
 
     ## hit 공 치는 각도 구하기
@@ -147,8 +149,8 @@ def find_power_direction(hit, target, hole):
 # radius: 공의 반지름, balls: 10개 공의 정보 리스트, hit_*: 치는 공(접두사), target_*: 맞추려는 공(접두사)
 radius = 10
 # index: 공의 번호, [x좌표, y좌표, 구멍에 넣었는지 여부], 0번째 공이 흰색 공
-balls = [[10, 50], [20, 30, False], [100, 100, False], [150, 100, False], [5, 90, False],
-        [[50, 30, False], [20, 70, False], [90, 80, False], [120, 10, False], [70, 70, False]]]
+balls = [[10, 50], [94, 55, False]]
+num_ball = len(balls)
 hole_radius = 10
 # 포켓 좌표(좌하, 하, 우하, 좌상, 상, 우상)
 holes = [[0, 0], [100, 0], [200, 0], [0, 100], [100, 100], [200, 100]]
@@ -158,12 +160,13 @@ hit = balls[0]
 hit_x, hit_y = hit
 
 # 맞춰야 하는 공 고르기 - 번호(index)가 작은 공부터 맞춰야하므로 index가 작은 공부터 탐색해서 구멍에 들어가지 않은 공을 찾는다.
-for i in range(1, 10):
+for i in range(1, num_ball):
     if not balls[i][2]:
         idx_target = i
         target = balls[i]
         target_x, target_y = target[0], target[1]
         break
+print("target", target)
 # else: 공을 다 넣었을 때 처리해주기
 
 
@@ -172,19 +175,20 @@ for i in range(1, 10):
 # (x1, y1)과 (x2, y2)를 지나는 방정식에서 폭을 +-radius만큼 더해준 범위 내에 다른 공이 있는지 판단
 # 다른 공이 있다면 2.로 분기
 ball_in_way = False
-for i in range(1, 10):
+for i in range(1, num_ball):
     if i != idx_target and judge_ball_in_way(hit, target, balls[i]):
         ball_in_way = True
         break
 
 if not ball_in_way:
+    print("no ball in way")
     # 6개 구멍에 대해 가장 들어갈 확률이 높은 구멍 찾기
     results = []
     for hole_idx in range(6):
         hole = holes[hole_idx]
         # 구멍까지 가는 길에 다른 공 없는지 판단
         ball_in_way_hole = False
-        for i in range(1, 10):
+        for i in range(1, num_ball):
             if i != idx_target and judge_ball_in_way(target, hole, balls[i]):
                 ball_in_way_hole = True
                 break
@@ -197,6 +201,7 @@ if not ball_in_way:
             # 흰공이 빠지지 않게(미구현)
             # 최적 각도, 파워, 구멍 입사각 구하기
             result = find_power_direction(hit, target, hole)
+            print("result: ", result)
             if result:
                 angle, power, hole_angle = result
                 # hole 위치에 따라 각도 보정
@@ -208,7 +213,9 @@ if not ball_in_way:
                     diff_angle = abs(90 - hole_angle)
                 results.append([angle, power, diff_angle])
     # 가장 들어갈 확률이 높은 구멍(diff_angle이 0에 가까운 구멍 선택)
-    print(sorted(results, key=lambda x: x[2])[0])
+    print("result", results)
+    if results:
+        print(sorted(results, key=lambda x: x[2])[0])
 
 
 
