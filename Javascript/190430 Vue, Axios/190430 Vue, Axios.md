@@ -674,7 +674,17 @@ getImage()
 
 
 
+## 37 homework
 
+CORS: Cross Origin Resource Sharing
+
+에러 발생 -> 서비스 하는 서버 내에서 요청을 보내야 허가한 요청이라고 인식해서 통과시켜줌.
+
+서버 : https://www.dhlottery.co.kr/...
+
+현재 : localhost
+
+사이트 페이지 안의 console 창에서 코드를 치면 제대로 작동한다.
 
 
 

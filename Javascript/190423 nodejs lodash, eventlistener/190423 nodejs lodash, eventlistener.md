@@ -119,7 +119,7 @@ var name = 'jack'
 console.log(`제 이름은 ${name}`)
 console.log('제 이름은 ' + name)
 
-var baseURL = 'www.namer.com'
+var baseURL = 'www.naver.com'
 var article = '1'
 console.log(`${baseURL}/${article}`)
 ```
@@ -186,9 +186,11 @@ console.log(min)
 
 `$ npm install lodash` -> node_modules 생성. package.json dependencies에 lodash 추가
 
-var 안 붙여도 선언 되지만, 명시적으로 해두는 걸로 습관을 들일 것.
 
-string interpolation을 template literal이라고 부른다.
+
+var 안 붙여도 변수 선언 되지만, 명시적으로 해두는 습관을 들일 것.
+
+string interpolation을 **template literal**이라고 부른다.
 
 
 
