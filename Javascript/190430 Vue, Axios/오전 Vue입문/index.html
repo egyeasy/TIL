@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>이건 헤더</h1>
+    <p id="app">{{ msg }} - {{ count }}</p>
+    <button id="btn">버튼</button>
+    <!-- Beautify Version. 도움되는 콘솔 경고를 포함한 개발 버전 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // btn이 눌러졌을때(클릭됐을때), p 태그 안에 "누르지마"
+        // const btn = document.querySelector('#btn')
+        // btn.addEventListener('click', function (event) {
+        //     console.log(event)
+        //     app = document.querySelector('#app')
+        //     app.innerText = "누르지마"
+        // })
+        let app = new Vue({
+            // 주어(장소 부사구)
+            el: '#app', // element 명시
+            // 목적어
+            data: {  // object로 데이터를 넣어줌
+                msg: 'Happy Hacking!',
+                count: 3+2,  // 5 출력. 연산도 수행한다.
+            },
+            // 동사
+            methods: {
+                plus: function() {
+                    this.count++  // this는 app을 가리킨다.
+                }
+            },
+            directives: {
+
+            },
+            watch: {
+
+            },
+            computed: {
+
+            },
+        })
+        app.plus()  // 메소드를 여기서 불러와서 쓸 수 있다.
+    </script>
+</body>
+</html>

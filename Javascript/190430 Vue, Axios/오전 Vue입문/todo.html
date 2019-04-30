@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo App</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ header }}</h1>
+        {{ header2 }}
+        <span v-html="header2"></span>  <!-- v-html을 지정해주면 vue가 조작해준다. -->
+        <h2>{{ subheader }}</h2>
+        <h2>{{ subheader }}</h2>
+        <h2>{{ subheader }}</h2>
+        <h2>{{ subheader }}</h2>
+        <ul>
+            <li v-for="t in todo">{{ t }}</li>
+        </ul>
+        <p v-if="checked">{{ todo }}</p>
+        <ol>
+            <li v-for="dh in donghoon">{{ dh }}</li> <!-- python과 다르게 key가 아니라 value가 나온다 -->
+        </ol>
+        <input v-model="subheader">  <!-- subheader를 이 페이지에서 바로 수정할 수 있다(양방향 바인딩) -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        let app = new Vue({  // 무언가를 상속받아서 쓰는 객체라고 보면 될 것(models.Model과 같은 것이라 보면 됨)
+            el: '#app',
+            data: {
+                header: 'Todo App',
+                header2: '<h1>Todo App</h1>',  // 이렇게는 안 된다.
+                subheader: 'This is todo app',
+                todo: ['동사무소 가기', '입대확인증 뽑기', '재입대하기'],  // 배열도 넘길 수 있다
+                checked: true,
+                donghoon: {
+                    name: "동훈",
+                    gunPil: true,
+                    major: "기계공학",
+                },
+                posts: [  // 이런 자료들을 많이 보게 될 것
+                    {
+                        id: 1,
+                        title: '제목1',
+                        content: '내용2',
+                    }, {}, {}, {}
+                ],
+                posts: fetch('/posts')  // json으로 posts를 받아와서 템플릿에 출력하는 패턴이 될 것.
+            }
+        })
+    </script>
+</body>
+</html>
