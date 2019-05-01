@@ -359,7 +359,7 @@ img, a 태그
         <img v-bind:src="imageSource">
         <a v-bind:href="insta">오바마</a>
         <input v-model="userInput"> <!-- v-model로 bind한다 -->
-        <button v-on:click="addInput, clearInput">todo 추가</button>  <!-- 인자가 필요없는 함수일 경우 addInput()이라고 쓰지 않아도 됨-->
+        <button v-on:click="addInput">todo 추가</button>  <!-- 인자가 필요없는 함수일 경우 addInput()이라고 쓰지 않아도 됨-->
         <ul>
             <li v-for="(todo, index) in todos">  <!-- enumerate하고 싶다면 (value, key)로 지정 -->
                 <span>{{ index + 1 }} : {{ todo }}</span> <!-- 혹시 styling이 필요할 때 작업해주기 위해 span 태그를 넣어둠 -->
@@ -505,7 +505,7 @@ join을 할 수도 있다.
 
 
 
-string의 0번째 : `"hello"[0]`, `"hello".charat(0)`
+string의 0번째 : `"hello"[0]`, `"hello".charAt(0)`
 
 charAt이 undefined를 반환하지 않아서 안전한 편
 
@@ -519,7 +519,7 @@ charAt이 undefined를 반환하지 않아서 안전한 편
 
         
         
-        
+	<script>
             },
             filters: {
                 reverseJoin: function(val) {  // 받으려는 인자 value
@@ -551,7 +551,7 @@ computed는 데이터를 조작. methods와 비슷한데, **caching**에 있어�
 
 `"hello".split('').reverse().join('')`
 
-computed는 템플릿 단에서 ()를 쓰면 안된다. compted는 function이 아니라 하나의 값으로 생각할 것.
+computed는 템플릿 단에서 ()를 쓰면 안된다. computed는 function이 아니라 하나의 값으로 생각할 것.
 
 ```html
     <div id="app">
