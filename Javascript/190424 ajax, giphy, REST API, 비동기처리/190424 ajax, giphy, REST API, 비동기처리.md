@@ -644,7 +644,7 @@ const searchAndPush = (keyword) => {  // 함수 안에 넣어줌. keyword를 안
         // resultArea.innerHTML += `<img src="${data}"/>`  // 하나씩 더하기
         const img = document.createElement('img') // img 태그 만들기. <img></img>
         img.setAttribute('src', data) // <img src="${data}" />
-        img.className = 'container-image' // container에 담기. setAttribute('class', 'container-image') 와 같은 작업
+        img.className = 'container-image' // container에 담기. img.setAttribute('class', 'container-image') 와 같은 작업
         resultArea.appendChild(img)  // child : 안쪽에 다른 element를 쌓는 것
     }
 }
@@ -656,7 +656,7 @@ const searchAndPush = (keyword) => {  // 함수 안에 넣어줌. keyword를 안
 
 # 오후 REST API, 비동기처리
 
-교재 REST API 참조
+PPT REST API 참조
 
 
 
@@ -826,7 +826,7 @@ const data = {
     userId: 1
 }
 
-XHR.send(JSON.stringify(data)) // 그냥 바로 요청을 보내느 GET과는 다르게 POST에서는 뭘 할지 알려줘야 함. 그걸 위의 setRequestHeader에서 수행
+XHR.send(JSON.stringify(data)) // 그냥 바로 요청을 보내는 GET과는 다르게 POST에서는 뭘 할지 알려줘야 함. 그걸 위의 setRequestHeader에서 수행
 
 // 3. XHR.addEventListener()
 XHR.addEventListener('load', function(donghoon) {  // donghoon : 받아온 데이터
@@ -838,6 +838,8 @@ XHR.addEventListener('load', function(donghoon) {  // donghoon : 받아온 데�
 
 
 
+
+## 비동기처리
 
 ### 2dogjs.js
 
@@ -940,7 +942,7 @@ call stack에 마치지 못한 애들을 다 집어넣는다. 이벤트가 완�
 
 
 
-개발자가 짤 수 있는 thread가 single. 실제로 돌아가는 엔진에서는 멀티 스레드.
+개발자가 짤 수 있는 thread가 single. 실제로 돌아가는 엔진은 멀티 스레드 방식.
 
 setTimeout을 만난 순간부터 시간을 재기 시작. 선순위 작업을 수행하다가 시간이 다 지나면 선순위 작업 수행 도중에 setTimeout의 결과를 리턴.
 

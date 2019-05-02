@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        img {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <input type="radio" id="dog" v-model="picked" value="야옹">
+        <!-- label for에는 input id 지정해주면 됨 -->
+        <label for="dog">댕댕이</label>
+        <br />
+        <input type="radio" id="cat" v-model="picked" value="때껄룩">
+        <label for="cat">고양이</label>
+        <br />
+        <span>{{ picked }}</span>
+        <img v-bind:src="image" />
+        <!-- <input type="text" v-model="test" /> -->
+    </div>
+    <script>
+        const dogAndCat = new Vue({
+            el: '#main',
+            data: {
+                picked: '',
+                image: '',  // imageURL 담을 곳
+                test: '',
+            },
+            watch: {
+                test: function(newValue, prevValue) {
+                    console.log('new value ', newValue)
+                    console.log('previous value ', prevValue)
+                    console.log()
+                },
+                // data의 값을 보고 있다가 data의 값이 바뀌면 특정 함수를 실행
+                // TODO: radio 버튼이 눌리면 해당 동물 이미지가 나오도록 하세요!
+                picked: function(newPicked) {
+                    if (newPicked === '야옹') {
+                        this.getDogImage()
+                    } else {  // convention상 두 가지 조건으로 분기할 때는 else로 처리
+                        this.getCatImage()
+                    }
+                }
+            },
+            methods: {
+                // 댕댕이 가지고 온다
+                getDogImage: function() {
+                    const URL = 'https://dog.ceo/api/breeds/image/random'
+                    axios.get(URL)
+                        .then((response) => {
+                            const imageUrl = response.data.message
+                            console.log(imageUrl)
+                            this.image = imageUrl
+                        })
+                },
+                // 고양이 가지고 온다
+                getCatImage: function() {
+                    const URL = 'https://api.thecatapi.com/v1/images/search'
+                    axios.get(URL)
+                        .then((response) => {
+                            const imageUrl = response.data[0].url
+                            console.log(imageUrl)
+                            this.image = imageUrl
+                        })
+                }
+            }
+        })
+    </script>
+</body>
+</html>
