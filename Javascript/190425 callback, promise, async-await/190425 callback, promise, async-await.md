@@ -197,7 +197,7 @@ const orderCoffee = (order) => {
 
     setTimeout(() => {
         coffee = order
-    }, 1000); 
+    }, 1000);
 }
 ```
 

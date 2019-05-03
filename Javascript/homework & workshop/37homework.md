@@ -20,4 +20,20 @@
    })
    ```
 
-2. 
+2. ```js
+   const URL = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=1"
+   
+   fetch(URL)
+       .then(res => {
+       // lottoData 상수에 res 에 담긴 내용을 Object 로 변환하여 저장한다.
+       
+       // lottoData 를 return 한다.
+       })
+       .then(lottoData => {
+       // lottoData 를 콘솔에 출력한다.
+       // lottoData 에서 추첨 날짜(drwNoDate)를 콘솔에 출력한다.
+       });
+   ```
+
+
+
