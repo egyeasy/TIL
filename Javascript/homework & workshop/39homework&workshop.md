@@ -21,20 +21,16 @@ console.log(student.introduce())
 
 ```js
 function solveMe(...nums) {
-    arr = []
-    const result = () => {
-        for (i = 1; i < nums.length; i++) {
-            arr.push(nums[0] * nums[i])
-        }
-    }
-    result()
-    console.log(arr)
-    return arr
+    const result = nums.map((num, index) => {
+        if (index !== 0) {
+            return nums[0] * num
+        } 
+    }).slice(1)
+    return result
 }
-
 const a = solveMe(2, 1, 2, 3, 4); // [2, 4, 6, 8]
 const b = solveMe(5, 10, 20); // [50, 100]
-console.log(a.concat(b)); // [2, 4, 6, 8, 50, 100]
+console.log([...a, ...b]); // [2, 4, 6, 8, 50, 100]
 ```
 
 
