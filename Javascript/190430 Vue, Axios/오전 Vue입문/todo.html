@@ -8,6 +8,7 @@
 </head>
 <body>
     <div id="app">
+        <div v-show="show">show</div>
         <h1>{{ header }}</h1>
         {{ header2 }}
         <span v-html="header2"></span>  <!-- v-html을 지정해주면 vue가 조작해준다. -->
@@ -29,6 +30,7 @@
         let app = new Vue({  // 무언가를 상속받아서 쓰는 객체라고 보면 될 것(models.Model과 같은 것이라 보면 됨)
             el: '#app',
             data: {
+                show: true,
                 header: 'Todo App',
                 header2: '<h1>Todo App</h1>',  // 이렇게는 안 된다.
                 subheader: 'This is todo app',

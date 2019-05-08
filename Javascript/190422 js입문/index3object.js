@@ -4,6 +4,7 @@
 딕셔너리 : 오브젝트
 */
 
+console.log(document.querySelector('span, div'))
 
 // 배열
 names = ['john', 'junse', 'dongyoung']
