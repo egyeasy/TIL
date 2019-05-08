@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Firebase TODO</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <input v-model="newTodo" @keyup.enter="addTodo">
+        </div>
+        <ul>
+            <!-- <li v-for="todo in todos">{{ todo }}</li> -->
+            <!-- 기존의 todos도 다르게 가져와야 한다: computed 소환 -->
+            <li v-for="todo in current">{{ todo['.value'] }}</li> 
+        </ul>
+    </div>
+
+    <!-- Vue js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- Firebase database -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+
+    <!-- Vue Fire -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vuefire/1.4.5/vuefire.min.js"></script>
+    <script>
+    // Initialize Firebase
+    // TODO: Replace with your project's customized code snippet
+    const config = {  // var 안쓰기로 했으므로 const로 바꿔줌
+        apiKey: "AIzaSyDTo76Oi1NTWog6kLGRjX4nfADjYe60WjM",
+        // authDomain: "<PROJECT_ID>.firebaseapp.com",  // 일단 지금은 안쓴다.
+        databaseURL: "https://test-4bfbb.firebaseio.com",
+        projectId: "test-4bfbb",
+        // storageBucket: "<BUCKET>.appspot.com",
+        // messagingSenderId: "<SENDER_ID>",
+    };
+    firebase.initializeApp(config);
+
+    const db = firebase.database()  // 데이터베이스를 쓰기 위해 객체를 만들어쓴다.
+    
+    const app = new Vue({
+        el: "#app",
+        data: {
+            newTodo: '',
+            // todos: [],
+            // status: 
+        },
+        methods: {
+            addTodo: function() {
+                // newTodo를 todos에 추가
+                // this.todos.push(this.newTodo)
+                this.$firebaseRefs.todos.push(this.newTodo)  // 아래의 todos에 접근
+                // -> firebase의 reference(바로가기)에 접근하기 때문에 Vuefire에 의해 이렇게 접근 가능하게 되어있다.
+                this.newTodo = ''
+            }
+        },
+        firebase: {  // vue를 firebase와 연결시키는 역할
+            todos: db.ref('todos')  // (객체의 키 이름): db.ref('테이블 이름')
+        },
+        computed: {
+            current: function() {
+                return this.todos  // 이렇게 써도 db todos에 접근이 가능하다.
+            }
+        }
+    })
+    </script>
+</body>
+</html>

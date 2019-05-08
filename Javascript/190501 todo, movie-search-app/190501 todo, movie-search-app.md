@@ -77,7 +77,7 @@ data를 methods 안에서 사용 가능
         })
     </script>
 </body>
-</html>
+</html>z
 ```
 
 

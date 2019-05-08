@@ -29,3 +29,10 @@ youtube - how secure is 256 bit security?
 ### 운영체제
 
 프로세스, 스레드에 대한 개념 설명 -> ops-class, Geoffrey Challen
+
+
+
+### 개발 방법론
+
+ 소프트웨어 방법론 최고의 수업 : 버클리 **Software as a Service**
+
