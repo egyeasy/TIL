@@ -1,3 +1,21 @@
+#  11_Vue SPA
+
+## 1. 목표
+
+- Vue.js를 통한 Single Page Application 구축
+
+
+
+## 2. 준비 사항
+
+1. Vue.js
+2. axios
+3. 영화 Data 제공용 Django REST API server
+
+
+
+## 3. 구현 사항 및 과정
+
 ### 영화 리스트업
 
 ```html
@@ -422,10 +440,6 @@ GET scores를 통해 listup 해야한다.
 
 
 
-
-
-
-
 ### 평균 평점 제공
 
 computed 사용
@@ -463,26 +477,6 @@ computed 사용
 </body>
 </html>
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
