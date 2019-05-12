@@ -34,12 +34,14 @@ with open('movie_naver.csv', 'w') as f:
 url_nav = "https://openapi.naver.com/v1/search/movie.json"
 movieCd = "20184105"
 query_nav = "query="+movieCd
-params = {
+headers = {
     'X-Naver-Client-Id': naver_id,
     'X-Naver-Client-Secret': naver_pw,
+}
+params = {
     'query': movieCd
 }
-res_nav = requests.get(url_nav, params=params)
+res_nav = requests.get(url_nav, headers=headers, params=params)
 doc_nav = res_nav.json()
 print(doc_nav)
 
