@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-3">
+      {% if profile.profile.image %}
+        <img class="rounded-circle" src="{{ profile.profile.image.url }}">
+      {% else %}
+        <img class="rounded-circle" src="{% static 'defaultimage.jpg' %}">
+      {% endif %}
+      <h1>{{ profile.username }}
+        {% if user != profile %}
+          {% if user in profile.followers.all %}
+            <a class="btn btn-primary" href="{% url 'accounts:follow' profile.id %}">언팔로우</a>
+          {% else %}
+            <a class="btn btn-info" href="{% url 'accounts:follow' profile.id %}">팔로우</a>
+          {% endif %}
+          <div id="app">
+            <div>[[ text ]]</div>
+            <!-- 버튼을 클릭하면 팔로우할 수 있는 버튼 -->
+            <button v-show="loading" @click="follow({{ profile.id }})" :class="{'btn': true, 'btn-info': !followed, 'btn-primary': followed}">팔로우</button>
+          </div>
+        {% endif %}
+      </h1>
+    </div>
+    <div class="col-9">
+      <div>
+        <strong>{{ profile.profile.nickname }}</strong>
+      </div>
+      <div>
+        {{ profile.profile.description }}
+      </div>
+      {% if user == profile %}
+        <a class="btn btn-info" href="{% url 'accounts:change_profile' %}">프로필변경</a>
+        <a class="btn btn-danger" href="{% url 'accounts:delete' %}">회원탈퇴</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <!-- 해당 유저가 작성한 모든 post를 보여줌 -->
+    {% for post in profile.post_set.all %}
+    <div class="col-4">
+      <img src="{{ post.image.url }}" class="img-fluid">
+    </div>
+    {% endfor %}
+  </div>
+  <script>
+    const app = new Vue({
+      delimiters: ['[[', ']]'],
+      el: '#app',
+      data: {
+        'text': '뷰 작동한다리',
+        followed: true,
+        loading: false
+      },
+      methods: {
+        follow: function(profile_id) {
+          axios.get(`/accounts/${profile_id}/vuefollow/`)
+            .then((response)=>{
+              console.log(response)
+              return response.data  // return 되는 data도 promise로 나오게 되는 함수다
+            })
+            .then((data) => {
+              this.followed = data.followed
+            })
+          // console.log(`${profile_id}번 유저 팔로우 했다리`)
+        },
+        checkFollow: function(profile_id) {
+          axios.get(`/accounts/${profile_id}/checkfollow`)
+            .then((response) => {
+              return response.data
+            })
+            .then((data) => {
+              console.log(data.followed)
+              this.followed = data.followed
+              this.loading = true
+            })
+        }
+      },
+      beforeMount: function() {
+        // django에게 물어봐서 follow 여부를 확인하고, 해당되는 값을 보여준다.
+        this.checkFollow({{ profile.id }})
+      }
+    })
+  </script>
+{% endblock %}
