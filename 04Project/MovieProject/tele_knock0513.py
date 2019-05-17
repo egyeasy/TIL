@@ -122,9 +122,14 @@ def get_message(bot, update) :
     query = update.message.text
     compressed_query = ''.join(list(query.strip().split()))
     founds = find_movie(compressed_query)
-    response = "'{}'에 대한 편성표 검색 결과 :\n".format(query)
-    for found in founds:
-        response += ' '.join(found) + '\n'
+    print(founds)
+    if founds:
+        response = "'{}'에 대한 편성표 검색 결과 :\n".format(query)
+        for found in founds:
+            response += ' '.join(found) + '\n'
+        response = response.strip()
+    else:
+        response = "'{}'에 대한 검색 결과가 없습니다.".format(query)
     update.message.reply_text(response)
     # update.message.reply_text(update.message.text)
     

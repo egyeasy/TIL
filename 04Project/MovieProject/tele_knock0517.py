@@ -40,7 +40,7 @@ res_nav = requests.get(url_nav, headers=headers, params=params)
 doc_nav = res_nav.json()
 
 print()
-print(f"========= '{query_text}' 검색결과 =========")
+print("========= 검색결과 =========")
 for mov in doc_nav['items']:
     print(mov)
     print()
