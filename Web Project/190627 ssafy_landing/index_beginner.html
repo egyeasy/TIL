@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- META -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta property="og:title" content="og title" />
+    <meta property="og:description" content="og desc" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta name="keywords" content="key1, key2, key3" />
+    <meta name="description" content="desc" />
+
+    <!-- Favicon -->
+    <link href="" rel="shortcut icon" />
+
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!--JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./js/ld.js"></script>
+
+    <title>Title</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header-wrapper">
+      <div class="header-contents">
+        <!-- 타이틀 -->
+        <p class="title" onclick="ssafy.ld.goPage(0)">Dong Young Lim</p>
+
+        <!-- 상단 메뉴 && 모바일 메뉴 -->
+        <div class="nav-bar">
+          <ul>
+            <li>
+              <a class="a-nav-bar" onClick="ssafy.ld.goPage(1)">About Me</a>
+            </li>
+            <li>
+              <a class="a-nav-bar" onClick="ssafy.ld.goPage(2)">Skills</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="main-wrapper">
+      <!-- section-1 -->
+      <div class="section section-1">
+        <div class="section-1-background"></div>
+        <div class="section-content">
+          <!-- To do -->
+          <h1 class="ml6">
+              <span class="text-wrapper">
+                <span class="letters">
+                  Web Service Developer
+                </span>
+              </span>
+            </h1>
+            <h1 class="ml6">
+              <span class="text-wrapper">
+                <span class="letters">
+                  Django Vue.js Algorithms ML/DL
+                </span>
+              </span>
+            </h1>
+        </div>
+        <!-- Scroll Down Button -->
+        <button class="btn-scroll-down" onclick="ssafy.ld.goPage(1)">
+          See Detail
+        </button>
+      </div>
+
+      <!-- section-2 : 자기소개 -->
+      <div class="section section-2">
+        <div class="section-content">
+          <!-- To do -->
+          <h1 class="ml4">
+            <span class="letters letters-1">삼성</span>
+            <span class="letters letters-2">청년</span>
+            <span class="letters letters-3">소프트웨어</span>
+            <span class="letters letters-4">아카데미의</span>
+            <span class="letters letters-5">교육생입니다</span>
+          </h1>
+          
+          <!-- 삼성 청년 SW 아카데미의 교육생입니다.
+          새로운 걸 배우는 것을 즐기고
+          유용한 것을 만드는 데서 보람을 느낍니다. -->
+        </div>
+      </div>
+
+      <!-- section-3 : 보유 기술 역량 -->
+      <div class="section section-3">
+        <div class="section-content">
+          <!-- To do -->
+          <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+        </div>
+      </div>
+
+      <!-- footer-->
+      <div class="footer">
+        <p>Footer</p>
+      </div>
+    </div>
+
+    <!-- init script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+        // scroll active
+        setTimeout(function() {
+          var items = document.querySelectorAll(".section");
+          // console.log(items)
+          items[0].classList.add("active");
+        }, 500);
+
+        ssafy.ld.init();
+      });
+
+      
+      // section1-content animation - Wrap every letter in a span
+      // reference : https://tobiasahlin.com/moving-letters/
+      $('.ml6 .letters').each(function(){
+        $(this).html($(this).text().replace(/([^\x00-\x80]|\w|\S)/g, "<span class='letter'>$&</span>"));
+      });
+
+      anime.timeline({loop: false})
+        .add({
+          targets: '.ml6 .letter',
+          translateY: ["1.1em", 0],
+          translateZ: 0,
+          duration: 750,
+          delay: function(el, i) {
+            return 50 * i;
+          }
+        })
+
+      // section 2
+      // reference : https://tobiasahlin.com/moving-letters/#4
+      var ml4 = {};
+      ml4.opacityIn = [0,1];
+      ml4.scaleIn = [0.2, 1];
+      ml4.scaleOut = 3;
+      ml4.durationIn = 800;
+      ml4.durationOut = 600;
+      ml4.delay = 500;
+
+      anime.timeline({loop: true})
+        .add({
+          targets: '.ml4 .letters-1',
+          opacity: ml4.opacityIn,
+          scale: ml4.scaleIn,
+          duration: ml4.durationIn
+        }).add({
+          targets: '.ml4 .letters-1',
+          opacity: 0,
+          scale: ml4.scaleOut,
+          duration: ml4.durationOut,
+          easing: "easeInExpo",
+          delay: ml4.delay
+        }).add({
+          targets: '.ml4 .letters-2',
+          opacity: ml4.opacityIn,
+          scale: ml4.scaleIn,
+          duration: ml4.durationIn
+        }).add({
+          targets: '.ml4 .letters-2',
+          opacity: 0,
+          scale: ml4.scaleOut,
+          duration: ml4.durationOut,
+          easing: "easeInExpo",
+          delay: ml4.delay
+        }).add({
+          targets: '.ml4 .letters-3',
+          opacity: ml4.opacityIn,
+          scale: ml4.scaleIn,
+          duration: ml4.durationIn
+        }).add({
+          targets: '.ml4 .letters-3',
+          opacity: 0,
+          scale: ml4.scaleOut,
+          duration: ml4.durationOut,
+          easing: "easeInExpo",
+          delay: ml4.delay
+        }).add({
+          targets: '.ml4 .letters-4',
+          opacity: ml4.opacityIn,
+          scale: ml4.scaleIn,
+          duration: ml4.durationIn
+        }).add({
+          targets: '.ml4 .letters-4',
+          opacity: 0,
+          scale: ml4.scaleOut,
+          duration: ml4.durationOut,
+          easing: "easeInExpo",
+          delay: ml4.delay
+        }).add({
+          targets: '.ml4 .letters-5',
+          opacity: ml4.opacityIn,
+          scale: ml4.scaleIn,
+          duration: ml4.durationIn
+        }).add({
+          targets: '.ml4 .letters-5',
+          opacity: 0,
+          scale: ml4.scaleOut,
+          duration: ml4.durationOut,
+          easing: "easeInExpo",
+          delay: ml4.delay
+        }).add({
+          targets: '.ml4',
+          opacity: 0,
+          duration: 500,
+          delay: 500
+        });
+
+      // section 3- Skill Chart
+      // reference : https://canvasjs.com/javascript-charts/bar-chart-axis-scale-break/
+
+      let pages = document.querySelectorAll(".section");
+      console.log(pages[2].classList)
+      window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+          animationEnabled: true,
+          title: {
+            text: "Skills"
+          },
+          axisX: {
+            interval: 1
+          },
+          axisY: {
+            title: "Proficiency",
+            scaleBreaks: {
+              type: "wavy",
+              customBreaks: [{
+                startValue: 80,
+                endValue: 210
+                },
+                {
+                  startValue: 230,
+                  endValue: 600
+                }
+            ]},
+            labelFormatter: function(e){
+              return "";
+            }
+          },
+          data: [{
+            type: "bar",
+            toolTipContent: "<img src=\assets\img\{url}\ style=\"width:40px; height:20px;\"> <b>{label}</b><br>Years of Exp: ${year}bn<br>Possible: ${detail}",
+            dataPoints: [
+              { label: "Django", y: 26, year: 17.8, detail: 5.8, url: "django.png" },
+              { label: "Vue.js", y: 15, year: 22.8, detail: 5.7, url: "vue.png" },
+              { label: "Tensorflow", y: 18, year: 22.8, detail: 1.3, url: "tensorflow.png"},
+              { label: "Sklearn", y:22, year: 24.3, detail: 2.0, url: "sklearn.png" },
+              // { label: "South Korea", y: 36.8, gdp: 2.7, url: "skorea.png" },
+              // { label: "Germany", y: 41.1, gdp: 1.2, url: "germany.png" },
+              // { label: "Japan", y: 46.1, gdp: 1.0, url: "japan.png" },
+              // { label: "United Kingdom", y: 48.3, gdp: 1.9, url: "uk.png" },
+              // { label: "India", y: 55.9, gdp: 2.5, url: "india.png" },
+              // { label: "Russia", y: 69.2, gdp: 5.3, url: "russia.png" },
+              // { label: "China", y: 215.7, gdp: 1.9, url: "china.png" },
+              // { label: "United States", y: 611.2, gdp: 3.3, url: "us.png" }
+            ]
+          }]
+        });
+
+        // console.log(pages[2].classList)
+          chart.render();
+      }
+    </script>
+  </body>
+</html>
