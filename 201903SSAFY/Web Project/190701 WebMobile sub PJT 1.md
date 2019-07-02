@@ -134,6 +134,23 @@
 
 
 
+# 190702 화
+
+### 구현사항
+
+- protfolio writer page - page, router,simplemde
+- favicon 구현 시도(실패)
+- top으로 올라가는 버튼 구현 - window.scrollTop, eventListener
+
+
+
+### 반응형 웹 구현
+
+- Vuetify를 통해서도 할 수 있다
+- display, grid system을 활용해볼 것
+
+
+
 
 
 
