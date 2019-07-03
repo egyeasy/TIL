@@ -153,7 +153,24 @@
 
 
 
+## 190703 수
 
+### 구현사항
+
+- 반응형 웹사이트 구현
+  1. 모바일 사이즈에서 About Me 이미지 hidden
+  2. 모바일 사이즈에서 hidden된 이미지 영역을 텍스트 영역으로 변환
+  3. 모바일 사이즈에서 Home 화면의 About Me 텍스트 가운데 정렬
+  4. 가로 사이즈에 따라 텍스트 사이즈 자동 조절
+- styleus 적용 시도(실패)
+
+
+
+### 레퍼런스
+
+- 글씨 줄이기를 위한 방법(stylus 설치 포함) - https://stackoverflow.com/questions/52086822/change-font-size-in-vuetify-based-on-viewport
+
+  http://vuejs.kr/jekyll/update/2017/01/17/vuejs-external-css-library/
 
 
 
