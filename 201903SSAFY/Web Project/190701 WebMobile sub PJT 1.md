@@ -178,6 +178,52 @@
 
 
 
+## 190704 목
+
+- 반응형 웹사이트 구현
+  1. 모바일 사이즈에서 4행 1열 노출로 변경
+  2. 태블릿 사이즈에서 2행 2열 노출로 변경
+- 모바일 사이즈에서 3단 바 네비게이션 아이콘(햄버거 메뉴) 구현
+- Home 버튼 아이콘 구현
+- 코드 레벨 네비게이션 영역을 Header 컴포넌트로 분리
+- favicon 변경 구현
+- 포트폴리오, 포스트 리스트에서 타이틀은 한 줄, 설명은 4줄 표시로 구현(Vue Line Clamp)
+- git repository 이름이 개행되지 않도록 설정(Vue Line Clamp)
+
+
+
+### 강의
+
+- Vuex는 정말 중요하다
+
+  - add 버튼은 store에 데이터를 넣기만 하고,
+
+    실제 개수를 나타내는 UI는 store의 데이터를 참조하기만 해도 상태관리가 가능.
+
+  - computed에서 데이터를 가져올 것.
+
+  - `this.$store.dispatch('addPortfolio', item)`, `this.$store.commit('setPortfolioList', list)`
+
+  - created -> this.load -> this.$store.commit
+
+    computed -> return this.$store.
+
+
+
+### 레퍼런스, 라이브러리
+
+- Vue Line Clamp
+
+  텍스트 최대 line 수 설정
+
+  https://www.npmjs.com/package/vue-line-clamp
+
+- 부모-자식 컴포넌트 간 데이터 송수신
+
+  http://www.devkuma.com/books/pages/1175
+
+  https://joshua1988.github.io/vue-camp/vue/event-emit.html
+
 
 
 
