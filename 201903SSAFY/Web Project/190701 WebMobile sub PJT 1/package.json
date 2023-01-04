@@ -21,7 +21,7 @@
     "@fortawesome/fontawesome-free": "^5.9.0",
     "@vue/cli-plugin-babel": "^3.0.4",
     "@vue/cli-plugin-pwa": "^3.0.4",
-    "@vue/cli-service": "^3.8.4",
+    "@vue/cli-service": "^5.0.8",
     "font-awesome": "^4.7.0",
     "material-design-icons-iconfont": "^5.0.1",
     "stylus": "^0.54.5",
